@@ -1489,12 +1489,7 @@ class MasterTable extends React.Component{
                                                  />
                                              </Col>
                                              <Col md={5} sm={5} xs={3} >
-                                                 <MasterTableComment
-                                                        id={items[i].id}
-                                                        isLiked={items[i].isLiked}
-                                                        onComment={this.props.masterCallback.oncomment.bind(this)}
-                                                        onShow={this.onComment.bind(this)}
-                                                 />
+                                                 
                                              </Col>
                                          </Row>
                                      </div>
@@ -1511,15 +1506,7 @@ class MasterTable extends React.Component{
                                     text={comment.comment}
                                     />
                                 )}
-                                
-                                <MasterTableCommentField
-                                    id={items[i].id}
-                                    isLiked={items[i].isLiked}
-                                    masterAPI={this.props.masterData}
-                                    onComment={this.props.masterCallback.oncomment.bind(this)}
-                                    onShow={this.onComment.bind(this)}
-                                    onShowComment={this.state.onShowComment}
-                                />
+
                         </Panel>
                     </Col>
                 
@@ -1534,84 +1521,12 @@ class MasterTable extends React.Component{
         );
     }
 
-
-    // render(){
-            
-    //     let filteredMaster = this.props.masterData.filter( 
-
-    //         (master) => master.name.toLowerCase().indexOf(this.props.filterText.toLowerCase()) !== -1
-    //     );
-        
-    //     return(
-                           
-    //             <Row>                
-    //             {filteredMaster.sort((a,b)=>b.id-a.id).map(
-    //                 (master, index) =>
-    //                 <Row>   
-    //                     <Col item md={2} sm={2} xs={1}></Col>
-    //                     <Col item md={10} sm={10} xs={10}>
-    //                     <Panel header={ 'Juan Perez post at ' + master.date}>
-    //                         <form>
-    //                             <div className="card">
-    //                                 <Row>                                            
-    //                                 <Col md={12} sm={12} xs={12}>
-    //                                     <p>
-    //                                         Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-    //                                     </p>
-    //                                 </Col>
-    //                                 </Row>
-    //                                 <Row>                                    
-    //                                 <Link  to={'/actions/'+master.id}>
-    //                                     <img src={"http://localhost:8084/executed/"+master.image}  alt="Avatar" style={{"width":"100%","padding-left":"10px","padding-right":"10px"}}/>
-    //                                     {/* <img src={"http://localhost:8084/executed/"+master.image}  alt="Avatar" style={{"width":"100%","padding-left":"10px","padding-right":"10px"}}/> */}
-    //                                 </Link>
-    //                                 </Row>
-    //                                 <div>                                        
-    //                                     <Row>
-    //                                         <Col md={8} sm={8} xs={4}>
-    //                                             <h5><i className="fa fa-thumbs-up" aria-hidden="true"></i> {master.like}</h5>
-    //                                         </Col>
-    //                                         <Col md={2} sm={2} xs={4} >
-    //                                             <h5><b>{'77'}</b> Comments</h5>
-    //                                         </Col>
-    //                                         <Col md={2} sm={2} xs={4}>
-    //                                             <h5>{'88'} Shared</h5>
-    //                                         </Col>
-    //                                     </Row>
-    //                                     <Row>
-    //                                         <Col md={6}>
-    //                                         <p>Architect  Engineer</p>                                         
-    //                                         </Col>
-    //                                     </Row>
-    //                                     <hr/>
-    //                                     <Row style={{'background-color':'#f7f7f7'}}>                                        
-    //                                         <Col md={5} sm={5} xs={3} >
-    //                                             <button className="btn btn-link" onClick={this.props.masterCallback.onlike.bind(this)} name="like" value={'{"id":'+master.id+',"press":"'+master.isLiked+'"}'}><i className="fa fa-thumbs-up" aria-hidden="true"></i> {master.isLiked}</button>
-    //                                         </Col>
-    //                                         <Col md={5} sm={5} xs={5} >                                                
-    //                                             <button className="btn btn-link" onClick={this.props.masterCallback.oncomment.bind(this)} name="comment" value={'{"id":'+master.id+',"press":"comments"}'}><i className="fa fa-comments" aria-hidden="true"></i> Comments</button>
-    //                                         </Col>
-    //                                         <Col md={2} sm={2} xs={4}>
-    //                                             <h4><b><i className="fa fa-share" aria-hidden="true"></i></b> Shared</h4>
-    //                                         </Col>                                            
-    //                                     </Row>
-    //                                 </div>
-    //                             </div>
-    //                         </form>
-    //                     </Panel>
-    //                 </Col>                         
-    //                 </Row>               
-    //             )}                
-    //             </Row>                                        
-                
-    //     );
-    // }
 }
 
 class MasterTableLike extends React.Component{
     render(){
         return(            
-            <button className="btn btn-link" name="like" onClick={this.props.onLike} value={'{"id":'+this.props.id+',"press":"'+this.props.isLiked+'"}'} ><i className="fa fa-thumbs-up" aria-hidden="true"></i> {this.props.isLiked}</button>
+            <button className="btn btn-warning" name="like" onClick={this.props.onLike} value={'{"id":'+this.props.id+',"press":"'+this.props.isLiked+'"}'} ><i className="fa fa-shopping-cart" aria-hidden="true"></i> {'Add To Cart'}</button>
         );
     }
 }
