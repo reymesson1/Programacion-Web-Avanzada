@@ -3912,27 +3912,35 @@ class CardNarv extends React.Component{
     render(){
 
         return(            
-                <Row>
-                    <br/>
-                    <Col md={12}>
-                    <Table striped bordered hover>                    
-                    <tbody>
-                      <tr>                        
-                        <td>Discount:</td>
-                        <td>$5.00</td>                        
-                      </tr>
-                      <tr>                        
-                        <td>Subtotal:</td>
-                        <td>$45.00</td>                        
-                      </tr>
-                      <tr>
-                        <td>Total:</td>
-                        <td>$10.00</td>                        
-                      </tr>
-                    </tbody>
-                  </Table>
-                  </Col>
-                </Row>
+                    <Row>
+                        <br/>
+                        <Col md={12}>
+                        <Table striped bordered hover>                    
+                        <tbody>
+                        <tr>                        
+                            <td>Discount:</td>
+                            <td>$5.00</td>                        
+                        </tr>
+                        <tr>                        
+                            <td>Subtotal:</td>
+                            <td>$45.00</td>                        
+                        </tr>
+                        <tr>
+                            <td>Total:</td>
+                            <td>$10.00</td>                        
+                        </tr>
+                        <tr>                            
+                            <td colSpan="2" style={{'text-align':'center', 'width':'100%'}}>
+                                <Button className="btn btn-primary">
+                                    Checkout
+                                </Button>
+                            </td>                                                  
+                            {/* <td>@twitter</td>                             */}
+                        </tr>
+                        </tbody>
+                    </Table>
+                    </Col>
+                    </Row>
         );
     }
 

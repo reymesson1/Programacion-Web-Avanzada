@@ -5825,6 +5825,19 @@ var CardNarv = function (_React$Component51) {
                                     null,
                                     '$10.00'
                                 )
+                            ),
+                            React.createElement(
+                                'tr',
+                                null,
+                                React.createElement(
+                                    'td',
+                                    { colSpan: '2', style: { 'text-align': 'center', 'width': '100%' } },
+                                    React.createElement(
+                                        Button,
+                                        { className: 'btn btn-primary' },
+                                        'Checkout'
+                                    )
+                                )
                             )
                         )
                     )
