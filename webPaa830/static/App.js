@@ -1332,51 +1332,14 @@ var Toolbar = function (_React$Component9) {
                         'li',
                         null,
                         React.createElement(
-                            Link,
-                            { to: '/master' },
-                            'Master'
-                        )
-                    ),
-                    React.createElement(
-                        'li',
-                        null,
-                        React.createElement(
-                            Link,
-                            { to: '/detail' },
-                            'Details'
-                        )
-                    ),
-                    React.createElement(
-                        NavDropdown,
-                        { eventKey: 3, title: 'DropDown', id: 'basic-nav-dropdown' },
-                        React.createElement(
-                            MenuItem,
-                            { eventKey: 3.1 },
+                            Form,
+                            { inline: true },
+                            React.createElement(FormControl, { style: { 'width': '700px' }, type: 'text', placeholder: 'Search', className: 'mr-sm-2' }),
                             React.createElement(
-                                Link,
-                                { to: '/partials' },
-                                'Draw'
+                                Button,
+                                { variant: 'outline-success' },
+                                React.createElement('i', { className: 'fa fa-search', 'aria-hidden': 'true' })
                             )
-                        ),
-                        React.createElement(
-                            MenuItem,
-                            { eventKey: 3.2 },
-                            React.createElement(
-                                Link,
-                                { to: '/order' },
-                                'Orders'
-                            )
-                        ),
-                        React.createElement(
-                            MenuItem,
-                            { eventKey: 3.3 },
-                            'Something else here'
-                        ),
-                        React.createElement(MenuItem, { divider: true }),
-                        React.createElement(
-                            MenuItem,
-                            { eventKey: 3.4 },
-                            'Separated link'
                         )
                     ),
                     React.createElement(
@@ -1392,6 +1355,7 @@ var Toolbar = function (_React$Component9) {
                 return React.createElement(
                     'div',
                     null,
+                    React.createElement('br', null),
                     toolbarEN
                 );
             } else {

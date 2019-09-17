@@ -852,21 +852,19 @@ class Toolbar extends React.Component{
         let toolbarEN = (
 
             <Navbar>
+            
                     <div className="navbar-header">
                         <div className="navbar-brand">
                             <Link to={'/'} onClick={this.onRefreshed.bind(this)}>React-Bootstrap</Link>
                         </div>
                     </div>
-                    <Nav>
-                      <li><Link to={'/master'}>Master</Link></li>
-                      <li><Link to={'/detail'}>Details</Link></li>
-                      <NavDropdown eventKey={3} title="DropDown" id="basic-nav-dropdown">
-                            <MenuItem eventKey={3.1}><Link to="/partials">Draw</Link></MenuItem>
-                            <MenuItem eventKey={3.2}><Link to={'/order'}>Orders</Link></MenuItem>
-                            <MenuItem eventKey={3.3}>Something else here</MenuItem>
-                            <MenuItem divider />
-                            <MenuItem eventKey={3.4}>Separated link</MenuItem>
-                      </NavDropdown>                      
+                    <Nav>                      
+                      <li>
+                      <Form inline>
+                            <FormControl style={{'width':'700px'}} type="text" placeholder="Search" className="mr-sm-2" />
+                            <Button variant="outline-success"><i className="fa fa-search" aria-hidden="true"></i></Button>
+                      </Form>
+                      </li>
                       <NavDropdown style={{'float':'right','position':'absolute','left':'80%'}} eventKey={3} title="Card" id="basic-nav-dropdown">
                             <CardNarv />                            
                       </NavDropdown>   
@@ -879,6 +877,7 @@ class Toolbar extends React.Component{
 
             return(
                     <div>
+                        <br/>
                         {toolbarEN}
                     </div>
             );
