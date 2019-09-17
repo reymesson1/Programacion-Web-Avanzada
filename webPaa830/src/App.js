@@ -3913,8 +3913,7 @@ class CardNarv extends React.Component{
 
     render(){
 
-        return(
-            <Card>
+        return(            
                 <Row>
                     <Col md={12}>
                     <Table striped bordered hover>                    
@@ -3935,8 +3934,6 @@ class CardNarv extends React.Component{
                   </Table>
                   </Col>
                 </Row>
-            </Card>
-
         );
     }
 

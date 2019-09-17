@@ -5790,61 +5790,57 @@ var CardNarv = function (_React$Component51) {
         value: function render() {
 
             return React.createElement(
-                Card,
+                Row,
                 null,
                 React.createElement(
-                    Row,
-                    null,
+                    Col,
+                    { md: 12 },
                     React.createElement(
-                        Col,
-                        { md: 12 },
+                        Table,
+                        { striped: true, bordered: true, hover: true },
                         React.createElement(
-                            Table,
-                            { striped: true, bordered: true, hover: true },
+                            'tbody',
+                            null,
                             React.createElement(
-                                'tbody',
+                                'tr',
                                 null,
                                 React.createElement(
-                                    'tr',
+                                    'td',
                                     null,
-                                    React.createElement(
-                                        'td',
-                                        null,
-                                        'Discount:'
-                                    ),
-                                    React.createElement(
-                                        'td',
-                                        null,
-                                        '$5.00'
-                                    )
+                                    'Discount:'
                                 ),
                                 React.createElement(
-                                    'tr',
+                                    'td',
                                     null,
-                                    React.createElement(
-                                        'td',
-                                        null,
-                                        'Subtotal:'
-                                    ),
-                                    React.createElement(
-                                        'td',
-                                        null,
-                                        '$45.00'
-                                    )
+                                    '$5.00'
+                                )
+                            ),
+                            React.createElement(
+                                'tr',
+                                null,
+                                React.createElement(
+                                    'td',
+                                    null,
+                                    'Subtotal:'
                                 ),
                                 React.createElement(
-                                    'tr',
+                                    'td',
                                     null,
-                                    React.createElement(
-                                        'td',
-                                        null,
-                                        'Total:'
-                                    ),
-                                    React.createElement(
-                                        'td',
-                                        null,
-                                        '$10.00'
-                                    )
+                                    '$45.00'
+                                )
+                            ),
+                            React.createElement(
+                                'tr',
+                                null,
+                                React.createElement(
+                                    'td',
+                                    null,
+                                    'Total:'
+                                ),
+                                React.createElement(
+                                    'td',
+                                    null,
+                                    '$10.00'
                                 )
                             )
                         )
