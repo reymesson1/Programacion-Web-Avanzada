@@ -854,26 +854,24 @@ class Toolbar extends React.Component{
             <Navbar>
                     <div className="navbar-header">
                         <div className="navbar-brand">
-                            <Link to={'/'}
-onClick={this.onRefreshed.bind(this)}>React-Bootstrap</Link>
+                            <Link to={'/'} onClick={this.onRefreshed.bind(this)}>React-Bootstrap</Link>
                         </div>
                     </div>
                     <Nav>
                       <li><Link to={'/master'}>Master</Link></li>
                       <li><Link to={'/detail'}>Details</Link></li>
-                      <NavDropdown eventKey={3} title="DropDown"
-id="basic-nav-dropdown">
-                            <MenuItem eventKey={3.1}><Link
-to="/partials">Draw</Link></MenuItem>
+                      <NavDropdown eventKey={3} title="DropDown" id="basic-nav-dropdown">
+                            <MenuItem eventKey={3.1}><Link to="/partials">Draw</Link></MenuItem>
                             <MenuItem eventKey={3.2}><Link to={'/order'}>Orders</Link></MenuItem>
-                            <MenuItem eventKey={3.3}>Something else
-here</MenuItem>
+                            <MenuItem eventKey={3.3}>Something else here</MenuItem>
                             <MenuItem divider />
                             <MenuItem eventKey={3.4}>Separated link</MenuItem>
-                      </NavDropdown>
-                      <li
-style={{'float':'right','position':'absolute','left':'80%'}}><Link
-onClick={this.onClicked} to={'/logout'}>Logout</Link></li>
+                      </NavDropdown>                      
+                      <NavDropdown style={{'float':'right','position':'absolute','left':'80%'}} eventKey={3} title="Perfil Usuario" id="basic-nav-dropdown">
+                            <CardNarv />
+                            <MenuItem eventKey={3.1}><Link to="/account">Cuenta de Usuario</Link></MenuItem>
+                            <MenuItem eventKey={3.2}><Link onClick={this.onClicked} to="/logout">Log Out</Link></MenuItem>
+                      </NavDropdown>   
                     </Nav>
                 </Navbar>
         );
@@ -3911,7 +3909,40 @@ class Profile extends React.Component{
 
 }
 
+class CardNarv extends React.Component{
+
+    render(){
+
+        return(
+            <Card>
+                <Row>
+                    <Col md={12}>
+                    <Table striped bordered hover>                    
+                    <tbody>
+                      <tr>                        
+                        <td>Discount:</td>
+                        <td>$5.00</td>                        
+                      </tr>
+                      <tr>                        
+                        <td>Subtotal:</td>
+                        <td>$45.00</td>                        
+                      </tr>
+                      <tr>
+                        <td>Total:</td>
+                        <td>$10.00</td>                        
+                      </tr>
+                    </tbody>
+                  </Table>
+                  </Col>
+                </Row>
+            </Card>
+
+        );
+    }
+
+}
 class Order extends React.Component{
+    
     
     constructor(){
 
@@ -3986,6 +4017,8 @@ class Order extends React.Component{
     }
 
 }
+
+
 
 ReactDOM.render((
   <Router history={browserHistory}>

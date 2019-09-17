@@ -1320,8 +1320,7 @@ var Toolbar = function (_React$Component9) {
                         { className: 'navbar-brand' },
                         React.createElement(
                             Link,
-                            { to: '/',
-                                onClick: this.onRefreshed.bind(this) },
+                            { to: '/', onClick: this.onRefreshed.bind(this) },
                             'React-Bootstrap'
                         )
                     )
@@ -1349,15 +1348,13 @@ var Toolbar = function (_React$Component9) {
                     ),
                     React.createElement(
                         NavDropdown,
-                        { eventKey: 3, title: 'DropDown',
-                            id: 'basic-nav-dropdown' },
+                        { eventKey: 3, title: 'DropDown', id: 'basic-nav-dropdown' },
                         React.createElement(
                             MenuItem,
                             { eventKey: 3.1 },
                             React.createElement(
                                 Link,
-                                {
-                                    to: '/partials' },
+                                { to: '/partials' },
                                 'Draw'
                             )
                         ),
@@ -1383,14 +1380,26 @@ var Toolbar = function (_React$Component9) {
                         )
                     ),
                     React.createElement(
-                        'li',
-                        {
-                            style: { 'float': 'right', 'position': 'absolute', 'left': '80%' } },
+                        NavDropdown,
+                        { style: { 'float': 'right', 'position': 'absolute', 'left': '80%' }, eventKey: 3, title: 'Perfil Usuario', id: 'basic-nav-dropdown' },
+                        React.createElement(CardNarv, null),
                         React.createElement(
-                            Link,
-                            {
-                                onClick: this.onClicked, to: '/logout' },
-                            'Logout'
+                            MenuItem,
+                            { eventKey: 3.1 },
+                            React.createElement(
+                                Link,
+                                { to: '/account' },
+                                'Cuenta de Usuario'
+                            )
+                        ),
+                        React.createElement(
+                            MenuItem,
+                            { eventKey: 3.2 },
+                            React.createElement(
+                                Link,
+                                { onClick: this.onClicked, to: '/logout' },
+                                'Log Out'
+                            )
                         )
                     )
                 )
@@ -5767,25 +5776,106 @@ var Profile = function (_React$Component50) {
     return Profile;
 }(React.Component);
 
-var Order = function (_React$Component51) {
-    _inherits(Order, _React$Component51);
+var CardNarv = function (_React$Component51) {
+    _inherits(CardNarv, _React$Component51);
+
+    function CardNarv() {
+        _classCallCheck(this, CardNarv);
+
+        return _possibleConstructorReturn(this, (CardNarv.__proto__ || Object.getPrototypeOf(CardNarv)).apply(this, arguments));
+    }
+
+    _createClass(CardNarv, [{
+        key: 'render',
+        value: function render() {
+
+            return React.createElement(
+                Card,
+                null,
+                React.createElement(
+                    Row,
+                    null,
+                    React.createElement(
+                        Col,
+                        { md: 12 },
+                        React.createElement(
+                            Table,
+                            { striped: true, bordered: true, hover: true },
+                            React.createElement(
+                                'tbody',
+                                null,
+                                React.createElement(
+                                    'tr',
+                                    null,
+                                    React.createElement(
+                                        'td',
+                                        null,
+                                        'Discount:'
+                                    ),
+                                    React.createElement(
+                                        'td',
+                                        null,
+                                        '$5.00'
+                                    )
+                                ),
+                                React.createElement(
+                                    'tr',
+                                    null,
+                                    React.createElement(
+                                        'td',
+                                        null,
+                                        'Subtotal:'
+                                    ),
+                                    React.createElement(
+                                        'td',
+                                        null,
+                                        '$45.00'
+                                    )
+                                ),
+                                React.createElement(
+                                    'tr',
+                                    null,
+                                    React.createElement(
+                                        'td',
+                                        null,
+                                        'Total:'
+                                    ),
+                                    React.createElement(
+                                        'td',
+                                        null,
+                                        '$10.00'
+                                    )
+                                )
+                            )
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return CardNarv;
+}(React.Component);
+
+var Order = function (_React$Component52) {
+    _inherits(Order, _React$Component52);
 
     function Order() {
         _classCallCheck(this, Order);
 
-        var _this71 = _possibleConstructorReturn(this, (Order.__proto__ || Object.getPrototypeOf(Order)).call(this));
+        var _this72 = _possibleConstructorReturn(this, (Order.__proto__ || Object.getPrototypeOf(Order)).call(this));
 
-        _this71.state = {
+        _this72.state = {
 
             orderAPI: []
         };
-        return _this71;
+        return _this72;
     }
 
     _createClass(Order, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            var _this72 = this;
+            var _this73 = this;
 
             // fetch(API_URL+'/orders/'+token(),{headers: API_HEADERS})
             // .then((response)=>response.json())
@@ -5807,7 +5897,7 @@ var Order = function (_React$Component51) {
             }).then(function (response) {
                 return response.json();
             }).then(function (responseData) {
-                _this72.setState({
+                _this73.setState({
 
                     orderAPI: responseData
                 });
