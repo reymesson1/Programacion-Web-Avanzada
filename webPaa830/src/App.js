@@ -32,8 +32,8 @@ const Autosuggest = Autosuggest;
 
 const moment = moment;
 
-const API_URL = 'http://159.203.156.208:8084';
-// const API_URL = 'http://localhost:8084'; 
+// const API_URL = 'http://localhost:8084';
+const API_URL = 'http://localhost:8084'; 
 
 const API_HEADERS = {
 
@@ -380,7 +380,7 @@ class Actions extends React.Component{
             
             <div style={{'text-align':'center'}}>
                 {/* <img src="http://locahost:8084/cargando.gif"  alt="Avatar"/>                                     */}
-                <img src="http://159.203.156.208:8084/cargando.gif"  alt="Avatar"/>                                    
+                <img src="http://localhost:8084/cargando.gif"  alt="Avatar"/>                                    
             </div>
         );
 
@@ -481,7 +481,7 @@ class Actions extends React.Component{
 
             <Panel header={date}>
                 <div className="card">
-                    <img src={"http://159.203.156.208:8084/executed/"+image}  alt="Avatar" style={{"width":"100%"}}/>
+                    <img src={"http://localhost:8084/executed/"+image}  alt="Avatar" style={{"width":"100%"}}/>
                     {/* <img src="http://localhost:8084/img_avatar.png"  alt="Avatar" style={{"width":"100%"}}/>                                     */}
                     <div className="container">
                         <h4><b>{name}</b></h4>                                         
@@ -1462,7 +1462,7 @@ class MasterTable extends React.Component{
                                      </Row>
                                      <Row>                                    
                                         <Link  to={'/actions/'+items[i].id}>
-                                            <img src={"http://159.203.156.208:8084/executed/"+items[i].image}  alt="Avatar" style={{"width":"100%","padding-left":"10px","padding-right":"10px"}}/>
+                                            <img src={"http://localhost:8084/executed/"+items[i].image}  alt="Avatar" style={{"width":"100%","padding-left":"10px","padding-right":"10px"}}/>
                                             {/* <img src={"http://localhost:8084/executed/"+items[i].image}  alt="Avatar" style={{"width":"100%","padding-left":"10px","padding-right":"10px"}}/> */}
                                         </Link>
                                      </Row>
@@ -1638,7 +1638,7 @@ class MasterTableCommentDisplay extends React.Component{
                         <Col md={1} sm={6} xs={6}>
                             <br/>
                             {/* <img src={"http://localhost:8084/"+"img_avatar.png"}  alt="Avatar" style={{"width":"100%","padding-left":"10px","padding-right":"10px"}}/> */}
-                            <img src={"http://159.203.156.208:8084/"+"img_avatar.png"}  alt="Avatar" style={{"width":"100%","padding-left":"10px","padding-right":"10px"}}/>
+                            <img src={"http://localhost:8084/"+"img_avatar.png"}  alt="Avatar" style={{"width":"100%","padding-left":"10px","padding-right":"10px"}}/>
                         </Col>                                        
                         <Col md={8} sm={6} xs={6}>
                             <br/>
@@ -1717,7 +1717,7 @@ class MasterTableBody extends React.Component{
                     <td>{this.props.status}</td>
                     <td>
                         {/* <Link className="btn btn-default" to={'/actions/'+this.props.id}><i className="fa fa-eye" aria-hidden="true"></i></Link>{' '}                                                 */}
-                        <a target="_blank" onClick={this.onClick} className="btn btn-default" href={"http://159.203.156.208:3000/"+this.props.id}><i className="fa fa-eye" aria-hidden="true"></i></a>{' '}
+                        <a target="_blank" onClick={this.onClick} className="btn btn-default" href={"http://localhost:3000/"+this.props.id}><i className="fa fa-eye" aria-hidden="true"></i></a>{' '}
                         {/* <a target="_blank" onClick={this.onClick} className="btn btn-default" href={"http://localhost:3000/"+this.props.id}><i className="fa fa-eye" aria-hidden="true"></i></a>{' '} */}
                         <Link className="btn btn-default" to={'/actions/'+this.props.id}><i className="fa fa-dollar" aria-hidden="true"></i></Link>{' '}                                                
                         <Button onClick={this.props.masterCallback.ondeletemaster.bind(this,this.props.id)}><i className="fa fa-trash" aria-hidden="true"></i></Button>
@@ -2650,7 +2650,7 @@ detailCallback={this.props.detailCallback}
                     <Panel header={master.date}>
                             <div className="card">                                    
                                 <Link to={'/actions/'+master.id}>
-                                    <img src="http://159.203.156.208:8084/img_avatar2.png"  alt="Avatar" style={{"width":"100%"}}/>                                    
+                                    <img src="http://localhost:8084/img_avatar2.png"  alt="Avatar" style={{"width":"100%"}}/>                                    
                                     {/* <img src="http://localhost:8084/img_avatar2.png"  alt="Avatar" style={{"width":"100%"}}/>                                     */}
                                 </Link>                  
                                 <div className="container">
@@ -3869,7 +3869,7 @@ class Profile extends React.Component{
                             <h1>{this.state.parameter}</h1>
                             <Panel>
                                     <div className="card">                                                                      
-                                            <img src="http://159.203.156.208:8084/img_avatar.png"  alt="Avatar" style={{"width":"100%"}}/>                                    
+                                            <img src="http://localhost:8084/img_avatar.png"  alt="Avatar" style={{"width":"100%"}}/>                                    
                                             {/* <img src="http://localhost:8084/img_avatar.png"  alt="Avatar" style={{"width":"100%"}}/>                                     */}
                                         <div className="container">
                                             

@@ -44,8 +44,8 @@ var Autosuggest = Autosuggest;
 
 var moment = moment;
 
-var API_URL = 'http://159.203.156.208:8084';
-// const API_URL = 'http://localhost:8084'; 
+// const API_URL = 'http://localhost:8084';
+var API_URL = 'http://localhost:8084';
 
 var API_HEADERS = {
 
@@ -425,7 +425,7 @@ var Actions = function (_React$Component2) {
             var loading = React.createElement(
                 'div',
                 { style: { 'text-align': 'center' } },
-                React.createElement('img', { src: 'http://159.203.156.208:8084/cargando.gif', alt: 'Avatar' })
+                React.createElement('img', { src: 'http://localhost:8084/cargando.gif', alt: 'Avatar' })
             );
 
             var bodyToLoad = React.createElement(
@@ -642,7 +642,7 @@ var Actions = function (_React$Component2) {
                 React.createElement(
                     'div',
                     { className: 'card' },
-                    React.createElement('img', { src: "http://159.203.156.208:8084/executed/" + image, alt: 'Avatar', style: { "width": "100%" } }),
+                    React.createElement('img', { src: "http://localhost:8084/executed/" + image, alt: 'Avatar', style: { "width": "100%" } }),
                     React.createElement(
                         'div',
                         { className: 'container' },
@@ -2087,7 +2087,7 @@ var MasterTable = function (_React$Component15) {
                                     React.createElement(
                                         Link,
                                         { to: '/actions/' + items[i].id },
-                                        React.createElement('img', { src: "http://159.203.156.208:8084/executed/" + items[i].image, alt: 'Avatar', style: { "width": "100%", "padding-left": "10px", "padding-right": "10px" } })
+                                        React.createElement('img', { src: "http://localhost:8084/executed/" + items[i].image, alt: 'Avatar', style: { "width": "100%", "padding-left": "10px", "padding-right": "10px" } })
                                     )
                                 ),
                                 React.createElement(
@@ -2351,7 +2351,7 @@ var MasterTableCommentDisplay = function (_React$Component18) {
                         Col,
                         { md: 1, sm: 6, xs: 6 },
                         React.createElement('br', null),
-                        React.createElement('img', { src: "http://159.203.156.208:8084/" + "img_avatar.png", alt: 'Avatar', style: { "width": "100%", "padding-left": "10px", "padding-right": "10px" } })
+                        React.createElement('img', { src: "http://localhost:8084/" + "img_avatar.png", alt: 'Avatar', style: { "width": "100%", "padding-left": "10px", "padding-right": "10px" } })
                     ),
                     React.createElement(
                         Col,
@@ -2501,7 +2501,7 @@ var MasterTableBody = function (_React$Component20) {
                     null,
                     React.createElement(
                         'a',
-                        { target: '_blank', onClick: this.onClick, className: 'btn btn-default', href: "http://159.203.156.208:3000/" + this.props.id },
+                        { target: '_blank', onClick: this.onClick, className: 'btn btn-default', href: "http://localhost:3000/" + this.props.id },
                         React.createElement('i', { className: 'fa fa-eye', 'aria-hidden': 'true' })
                     ),
                     ' ',
@@ -3743,7 +3743,7 @@ var DetailTable = function (_React$Component29) {
                                 React.createElement(
                                     Link,
                                     { to: '/actions/' + master.id },
-                                    React.createElement('img', { src: 'http://159.203.156.208:8084/img_avatar2.png', alt: 'Avatar', style: { "width": "100%" } })
+                                    React.createElement('img', { src: 'http://localhost:8084/img_avatar2.png', alt: 'Avatar', style: { "width": "100%" } })
                                 ),
                                 React.createElement(
                                     'div',
@@ -5681,7 +5681,7 @@ var Profile = function (_React$Component50) {
                             React.createElement(
                                 'div',
                                 { className: 'card' },
-                                React.createElement('img', { src: 'http://159.203.156.208:8084/img_avatar.png', alt: 'Avatar', style: { "width": "100%" } }),
+                                React.createElement('img', { src: 'http://localhost:8084/img_avatar.png', alt: 'Avatar', style: { "width": "100%" } }),
                                 React.createElement(
                                     'div',
                                     { className: 'container' },
