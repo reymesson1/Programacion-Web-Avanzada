@@ -1490,13 +1490,13 @@ class MasterTable extends React.Component{
                                      </Row>
                                      <div>
                                         <Row>
-                                             <Col md={8} sm={8} xs={4}>
+                                             <Col md={4} sm={4} xs={2}>
                                                  <h5><i className="fa fa-thumbs-up" aria-hidden="true"></i> {items[i].like}</h5>
                                              </Col>
-                                             <Col md={2} sm={2} xs={4} >
+                                             <Col md={4} sm={4} xs={2} >
                                                  <h5><b>{'77'}</b> Comments</h5>
                                              </Col>
-                                             <Col md={2} sm={2} xs={4}>
+                                             <Col md={4} sm={4} xs={2}>
                                                  <h5>{'88'} Shared</h5>
                                              </Col>
                                          </Row>

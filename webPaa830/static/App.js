@@ -2071,7 +2071,7 @@ var MasterTable = function (_React$Component15) {
                                     null,
                                     React.createElement(
                                         Col,
-                                        { md: 8, sm: 8, xs: 4 },
+                                        { md: 4, sm: 4, xs: 2 },
                                         React.createElement(
                                             'h5',
                                             null,
@@ -2082,7 +2082,7 @@ var MasterTable = function (_React$Component15) {
                                     ),
                                     React.createElement(
                                         Col,
-                                        { md: 2, sm: 2, xs: 4 },
+                                        { md: 4, sm: 4, xs: 2 },
                                         React.createElement(
                                             'h5',
                                             null,
@@ -2096,7 +2096,7 @@ var MasterTable = function (_React$Component15) {
                                     ),
                                     React.createElement(
                                         Col,
-                                        { md: 2, sm: 2, xs: 4 },
+                                        { md: 4, sm: 4, xs: 2 },
                                         React.createElement(
                                             'h5',
                                             null,
