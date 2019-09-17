@@ -24,6 +24,7 @@ var userSchema = new mongoose.Schema({
     payment: String,
     like: Number,
     isLiked: String,
+    isLikedArr: Array,
     image: String,
     user: String
 })

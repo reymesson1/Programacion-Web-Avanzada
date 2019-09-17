@@ -1447,14 +1447,14 @@ class MasterTable extends React.Component{
         for(var i=0;i<items.length;i++){
             
             rows.push(
-                <Row>
-                    <Col item md={2} sm={2} xs={1}></Col>                    
-                    <Col item md={10} sm={10} xs={10}>
+                
+                    
+                    <Col item md={4}> 
                         <Panel header={ 'Juan Perez post at ' + items[i].name}>
                             
                                 <div className="card">
                                      <Row>                                            
-                                        <Col md={12} sm={12} xs={12}>
+                                        <Col md={12}>
                                             <p>
                                                 Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
                                             </p>
@@ -1526,7 +1526,7 @@ class MasterTable extends React.Component{
                                 />
                         </Panel>
                     </Col>
-                </Row>
+                
             )
         }
 
