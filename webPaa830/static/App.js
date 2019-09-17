@@ -1381,26 +1381,8 @@ var Toolbar = function (_React$Component9) {
                     ),
                     React.createElement(
                         NavDropdown,
-                        { style: { 'float': 'right', 'position': 'absolute', 'left': '80%' }, eventKey: 3, title: 'Perfil Usuario', id: 'basic-nav-dropdown' },
-                        React.createElement(CardNarv, null),
-                        React.createElement(
-                            MenuItem,
-                            { eventKey: 3.1 },
-                            React.createElement(
-                                Link,
-                                { to: '/account' },
-                                'Cuenta de Usuario'
-                            )
-                        ),
-                        React.createElement(
-                            MenuItem,
-                            { eventKey: 3.2 },
-                            React.createElement(
-                                Link,
-                                { onClick: this.onClicked, to: '/logout' },
-                                'Log Out'
-                            )
-                        )
+                        { style: { 'float': 'right', 'position': 'absolute', 'left': '80%' }, eventKey: 3, title: 'Card', id: 'basic-nav-dropdown' },
+                        React.createElement(CardNarv, null)
                     )
                 )
             );
@@ -5792,6 +5774,7 @@ var CardNarv = function (_React$Component51) {
             return React.createElement(
                 Row,
                 null,
+                React.createElement('br', null),
                 React.createElement(
                     Col,
                     { md: 12 },

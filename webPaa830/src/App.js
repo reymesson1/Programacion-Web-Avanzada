@@ -867,10 +867,8 @@ class Toolbar extends React.Component{
                             <MenuItem divider />
                             <MenuItem eventKey={3.4}>Separated link</MenuItem>
                       </NavDropdown>                      
-                      <NavDropdown style={{'float':'right','position':'absolute','left':'80%'}} eventKey={3} title="Perfil Usuario" id="basic-nav-dropdown">
-                            <CardNarv />
-                            <MenuItem eventKey={3.1}><Link to="/account">Cuenta de Usuario</Link></MenuItem>
-                            <MenuItem eventKey={3.2}><Link onClick={this.onClicked} to="/logout">Log Out</Link></MenuItem>
+                      <NavDropdown style={{'float':'right','position':'absolute','left':'80%'}} eventKey={3} title="Card" id="basic-nav-dropdown">
+                            <CardNarv />                            
                       </NavDropdown>   
                     </Nav>
                 </Navbar>
@@ -3915,6 +3913,7 @@ class CardNarv extends React.Component{
 
         return(            
                 <Row>
+                    <br/>
                     <Col md={12}>
                     <Table striped bordered hover>                    
                     <tbody>
