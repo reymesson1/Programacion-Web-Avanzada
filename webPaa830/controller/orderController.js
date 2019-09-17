@@ -28,7 +28,7 @@ setLogin = async(frontenduser) =>{
 exports.getOrder = async(req,res)=>{
 
   var decode = jwt.decode(req.body.user,'123')
-  
+
   setLogin(decode.sub)
 
   setTimeout(async() => {
@@ -48,12 +48,12 @@ exports.setOrder = async(req,res)=>{
   
   setLogin(decode.sub)
   
-  setTimeout(async() => {
-    
+  setTimeout(() => {
+  
     var order = req.body
     order["username"] = userDB
 
-    var orderDB = new Order(req.body); 
+    var orderDB = new Order(order); 
     orderDB.save(function(err,o){
         
         if(!err){

@@ -4,7 +4,8 @@ var bcrypt = require('bcrypt-nodejs');
 var userSchema = new mongoose.Schema({
     username: String,
     quantity: String,
-    address: String    
+    project: String,
+    description: String    
 })
 
 module.exports = mongoose.model('Order', userSchema)

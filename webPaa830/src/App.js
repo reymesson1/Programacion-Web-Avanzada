@@ -865,7 +865,7 @@ class Toolbar extends React.Component{
                             <Button style={{'margin-top':'10px'}} variant="outline-success"><i className="fa fa-search" aria-hidden="true"></i></Button>
                       </Form>
                       </li>
-                      <NavDropdown style={{'float':'right','position':'absolute','left':'80%'}} eventKey={3} title="Card" id="basic-nav-dropdown">
+                      <NavDropdown style={{'float':'right','position':'absolute','left':'80%'}} eventKey={3} title="Cart" id="basic-nav-dropdown">
                             <CardNarv />                            
                       </NavDropdown>   
                     </Nav>
@@ -926,7 +926,8 @@ class Master extends React.Component{
             masterAPI: [],
             masterDetail: [],
             counter: [],
-            idSelected: 0
+            idSelected: 0,
+            cart: []
         };
     }
 
@@ -1139,45 +1140,70 @@ class Master extends React.Component{
 
         let nextState = this.state.masterAPI;
 
-        if(newSubmit.press=="Unlike"){
+        let filteredData = this.state.masterAPI.filter(
 
-            var index = nextState.findIndex(x=> x.id==newSubmit.id);
+            (master) => master.id == newSubmit.id
+        )
 
-            nextState[index].like -= 1;
-            nextState[index].isLiked = "Like";
+        console.log(filteredData)
 
-            this.setState({
-
-                masterAPI: nextState
-            });
-
-            fetch(API_URL+'/updatemasterlike', {
-                
-                method: 'post',
-                headers: API_HEADERS,
-                body: JSON.stringify({"id":newSubmit.id,"press":newSubmit.press})
-            })
-
-        }else{
-
-            var index = nextState.findIndex(x=> x.id==newSubmit.id);
+        let newItem = {
             
-            nextState[index].like += 1;
-            nextState[index].isLiked = "Unlike";
-
-            this.setState({
-                
-                masterAPI: nextState
-            });
-
-            fetch(API_URL+'/updatemasterlike', {
-                
-                method: 'post',
-                headers: API_HEADERS,
-                body: JSON.stringify({"id":newSubmit.id,"press":newSubmit.press})
-            })
-
+            "username" : token(),
+            "quantity" : "1",
+            "project" : filteredData[0].project,
+            "description": filteredData[0].name
         }
+
+        // console.log(newItem)
+
+        fetch(API_URL+'/addorder', {
+            
+            method: 'post',
+            headers: API_HEADERS,
+            body: JSON.stringify(newItem)
+        })
+            
+
+        // if(newSubmit.press=="Unlike"){
+
+        //     var index = nextState.findIndex(x=> x.id==newSubmit.id);
+
+        //     nextState[index].like -= 1;
+        //     nextState[index].isLiked = "Like";
+
+        //     this.setState({
+
+        //         masterAPI: nextState
+        //     });
+
+        //     fetch(API_URL+'/updatemasterlike', {
+                
+        //         method: 'post',
+        //         headers: API_HEADERS,
+        //         body: JSON.stringify({"id":newSubmit.id,"press":newSubmit.press})
+        //     })
+
+        // }else{
+
+        //     var index = nextState.findIndex(x=> x.id==newSubmit.id);
+            
+        //     nextState[index].like += 1;
+        //     nextState[index].isLiked = "Unlike";
+
+        //     this.setState({
+                
+        //         masterAPI: nextState
+        //     });
+
+        //     fetch(API_URL+'/updatemasterlike', {
+                
+        //         method: 'post',
+        //         headers: API_HEADERS,
+        //         body: JSON.stringify({"id":newSubmit.id,"press":newSubmit.press})
+        //     })
+
+        // }
         
     }
 
@@ -1523,6 +1549,7 @@ class MasterTable extends React.Component{
 }
 
 class MasterTableLike extends React.Component{
+
     render(){
         return(            
             <button className="btn btn-warning" name="like" onClick={this.props.onLike} value={'{"id":'+this.props.id+',"press":"'+this.props.isLiked+'"}'} ><i className="fa fa-shopping-cart" aria-hidden="true"></i> {'Add To Cart'}</button>
@@ -3823,7 +3850,56 @@ class Profile extends React.Component{
 
 class CardNarv extends React.Component{
 
+    constructor(){
+        
+        super();
+        this.state = {
+
+            orderAPI: []
+        }
+    }
+
+    componentDidMount(){
+
+        // fetch(API_URL+'/orders/'+token(),{headers: API_HEADERS})
+        // .then((response)=>response.json())
+        // .then((responseData)=>{
+        //     this.setState({
+    
+        //         orderAPI: responseData
+        //     })
+        // })
+        let newItem = {
+
+            "user" : token()
+        }
+        fetch(API_URL+'/orders', {
+            
+            method: 'post',
+            headers: API_HEADERS,
+            body: JSON.stringify(newItem)
+        })
+        .then((response)=>response.json())
+        .then((responseData)=>{
+            this.setState({
+    
+                orderAPI: responseData
+            })
+        })
+        .catch((error)=>{
+            console.log('Error fetching and parsing data', error);
+        })
+    }
+
     render(){
+
+        let sum = 0;
+
+        if(this.state.orderAPI[0]){
+            for(var x=0;x<this.state.orderAPI.length;x++){                
+                sum+= parseInt(this.state.orderAPI[x].project)
+            }
+        }
 
         return(            
                     <Row>
@@ -3831,17 +3907,17 @@ class CardNarv extends React.Component{
                         <Col md={12}>
                         <Table striped bordered hover>                    
                         <tbody>
-                        <tr>                        
+                        <tr>                                                    
                             <td>Discount:</td>
-                            <td>$5.00</td>                        
+                            <td>${(sum*5/100).toFixed(2)}</td>                        
                         </tr>
                         <tr>                        
                             <td>Subtotal:</td>
-                            <td>$45.00</td>                        
+                            <td>${((sum)-(sum*5/100)).toFixed(2)}</td>                        
                         </tr>
                         <tr>
                             <td>Total:</td>
-                            <td>$10.00</td>                        
+                            <td>${sum.toFixed(2)}</td>                        
                         </tr>
                         <tr>                            
                             <td colSpan="2" style={{'text-align':'center', 'width':'100%'}}>

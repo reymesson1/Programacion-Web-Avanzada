@@ -1344,7 +1344,7 @@ var Toolbar = function (_React$Component9) {
                     ),
                     React.createElement(
                         NavDropdown,
-                        { style: { 'float': 'right', 'position': 'absolute', 'left': '80%' }, eventKey: 3, title: 'Card', id: 'basic-nav-dropdown' },
+                        { style: { 'float': 'right', 'position': 'absolute', 'left': '80%' }, eventKey: 3, title: 'Cart', id: 'basic-nav-dropdown' },
                         React.createElement(CardNarv, null)
                     )
                 )
@@ -1435,7 +1435,8 @@ var Master = function (_React$Component12) {
             masterAPI: [],
             masterDetail: [],
             counter: [],
-            idSelected: 0
+            idSelected: 0,
+            cart: []
         };
         return _this15;
     }
@@ -1654,47 +1655,67 @@ var Master = function (_React$Component12) {
 
             var nextState = this.state.masterAPI;
 
-            if (newSubmit.press == "Unlike") {
+            var filteredData = this.state.masterAPI.filter(function (master) {
+                return master.id == newSubmit.id;
+            });
 
-                var index = nextState.findIndex(function (x) {
-                    return x.id == newSubmit.id;
-                });
+            console.log(filteredData);
 
-                nextState[index].like -= 1;
-                nextState[index].isLiked = "Like";
+            var newItem = {
 
-                this.setState({
+                "username": token(),
+                "quantity": "1",
+                "project": filteredData[0].project,
+                "description": filteredData[0].name
 
-                    masterAPI: nextState
-                });
+                // console.log(newItem)
 
-                fetch(API_URL + '/updatemasterlike', {
+            };fetch(API_URL + '/addorder', {
 
-                    method: 'post',
-                    headers: API_HEADERS,
-                    body: JSON.stringify({ "id": newSubmit.id, "press": newSubmit.press })
-                });
-            } else {
+                method: 'post',
+                headers: API_HEADERS,
+                body: JSON.stringify(newItem)
+            });
 
-                var index = nextState.findIndex(function (x) {
-                    return x.id == newSubmit.id;
-                });
+            // if(newSubmit.press=="Unlike"){
 
-                nextState[index].like += 1;
-                nextState[index].isLiked = "Unlike";
+            //     var index = nextState.findIndex(x=> x.id==newSubmit.id);
 
-                this.setState({
+            //     nextState[index].like -= 1;
+            //     nextState[index].isLiked = "Like";
 
-                    masterAPI: nextState
-                });
+            //     this.setState({
 
-                fetch(API_URL + '/updatemasterlike', {
+            //         masterAPI: nextState
+            //     });
 
-                    method: 'post',
-                    headers: API_HEADERS,
-                    body: JSON.stringify({ "id": newSubmit.id, "press": newSubmit.press })
-                });
-            }
+            //     fetch(API_URL+'/updatemasterlike', {
+
+            //         method: 'post',
+            //         headers: API_HEADERS,
+            //         body: JSON.stringify({"id":newSubmit.id,"press":newSubmit.press})
+            //     })
+
+            // }else{
+
+            //     var index = nextState.findIndex(x=> x.id==newSubmit.id);
+
+            //     nextState[index].like += 1;
+            //     nextState[index].isLiked = "Unlike";
+
+            //     this.setState({
+
+            //         masterAPI: nextState
+            //     });
+
+            //     fetch(API_URL+'/updatemasterlike', {
+
+            //         method: 'post',
+            //         headers: API_HEADERS,
+            //         body: JSON.stringify({"id":newSubmit.id,"press":newSubmit.press})
+            //     })
+
+            // }
         }
     }, {
         key: 'onComment',
@@ -5638,12 +5659,59 @@ var CardNarv = function (_React$Component51) {
     function CardNarv() {
         _classCallCheck(this, CardNarv);
 
-        return _possibleConstructorReturn(this, (CardNarv.__proto__ || Object.getPrototypeOf(CardNarv)).apply(this, arguments));
+        var _this71 = _possibleConstructorReturn(this, (CardNarv.__proto__ || Object.getPrototypeOf(CardNarv)).call(this));
+
+        _this71.state = {
+
+            orderAPI: []
+        };
+        return _this71;
     }
 
     _createClass(CardNarv, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _this72 = this;
+
+            // fetch(API_URL+'/orders/'+token(),{headers: API_HEADERS})
+            // .then((response)=>response.json())
+            // .then((responseData)=>{
+            //     this.setState({
+
+            //         orderAPI: responseData
+            //     })
+            // })
+            var newItem = {
+
+                "user": token()
+            };
+            fetch(API_URL + '/orders', {
+
+                method: 'post',
+                headers: API_HEADERS,
+                body: JSON.stringify(newItem)
+            }).then(function (response) {
+                return response.json();
+            }).then(function (responseData) {
+                _this72.setState({
+
+                    orderAPI: responseData
+                });
+            }).catch(function (error) {
+                console.log('Error fetching and parsing data', error);
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
+
+            var sum = 0;
+
+            if (this.state.orderAPI[0]) {
+                for (var x = 0; x < this.state.orderAPI.length; x++) {
+                    sum += parseInt(this.state.orderAPI[x].project);
+                }
+            }
 
             return React.createElement(
                 Row,
@@ -5669,7 +5737,8 @@ var CardNarv = function (_React$Component51) {
                                 React.createElement(
                                     'td',
                                     null,
-                                    '$5.00'
+                                    '$',
+                                    (sum * 5 / 100).toFixed(2)
                                 )
                             ),
                             React.createElement(
@@ -5683,7 +5752,8 @@ var CardNarv = function (_React$Component51) {
                                 React.createElement(
                                     'td',
                                     null,
-                                    '$45.00'
+                                    '$',
+                                    (sum - sum * 5 / 100).toFixed(2)
                                 )
                             ),
                             React.createElement(
@@ -5697,7 +5767,8 @@ var CardNarv = function (_React$Component51) {
                                 React.createElement(
                                     'td',
                                     null,
-                                    '$10.00'
+                                    '$',
+                                    sum.toFixed(2)
                                 )
                             ),
                             React.createElement(
@@ -5729,19 +5800,19 @@ var Order = function (_React$Component52) {
     function Order() {
         _classCallCheck(this, Order);
 
-        var _this72 = _possibleConstructorReturn(this, (Order.__proto__ || Object.getPrototypeOf(Order)).call(this));
+        var _this73 = _possibleConstructorReturn(this, (Order.__proto__ || Object.getPrototypeOf(Order)).call(this));
 
-        _this72.state = {
+        _this73.state = {
 
             orderAPI: []
         };
-        return _this72;
+        return _this73;
     }
 
     _createClass(Order, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            var _this73 = this;
+            var _this74 = this;
 
             // fetch(API_URL+'/orders/'+token(),{headers: API_HEADERS})
             // .then((response)=>response.json())
@@ -5763,7 +5834,7 @@ var Order = function (_React$Component52) {
             }).then(function (response) {
                 return response.json();
             }).then(function (responseData) {
-                _this73.setState({
+                _this74.setState({
 
                     orderAPI: responseData
                 });
