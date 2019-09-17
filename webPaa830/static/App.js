@@ -1334,10 +1334,10 @@ var Toolbar = function (_React$Component9) {
                         React.createElement(
                             Form,
                             { inline: true },
-                            React.createElement(FormControl, { style: { 'width': '700px' }, type: 'text', placeholder: 'Search', className: 'mr-sm-2' }),
+                            React.createElement(FormControl, { style: { 'width': '700px', 'margin-top': '10px' }, type: 'text', placeholder: 'Search', className: 'mr-sm-2' }),
                             React.createElement(
                                 Button,
-                                { variant: 'outline-success' },
+                                { style: { 'margin-top': '10px' }, variant: 'outline-success' },
                                 React.createElement('i', { className: 'fa fa-search', 'aria-hidden': 'true' })
                             )
                         )

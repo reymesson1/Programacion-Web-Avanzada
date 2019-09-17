@@ -861,8 +861,8 @@ class Toolbar extends React.Component{
                     <Nav>                      
                       <li>
                       <Form inline>
-                            <FormControl style={{'width':'700px'}} type="text" placeholder="Search" className="mr-sm-2" />
-                            <Button variant="outline-success"><i className="fa fa-search" aria-hidden="true"></i></Button>
+                            <FormControl style={{'width':'700px', 'margin-top':'10px'}} type="text" placeholder="Search" className="mr-sm-2" />
+                            <Button style={{'margin-top':'10px'}} variant="outline-success"><i className="fa fa-search" aria-hidden="true"></i></Button>
                       </Form>
                       </li>
                       <NavDropdown style={{'float':'right','position':'absolute','left':'80%'}} eventKey={3} title="Card" id="basic-nav-dropdown">
