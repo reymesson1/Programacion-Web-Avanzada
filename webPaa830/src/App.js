@@ -3904,31 +3904,35 @@ class CardNarv extends React.Component{
         return(            
                     <Row>
                         <br/>
-                        <Col md={12}>
-                        <Table striped bordered hover>                    
-                        <tbody>
-                        <tr>                                                    
-                            <td>Discount:</td>
-                            <td>${(sum*5/100).toFixed(2)}</td>                        
-                        </tr>
-                        <tr>                        
-                            <td>Subtotal:</td>
-                            <td>${((sum)-(sum*5/100)).toFixed(2)}</td>                        
-                        </tr>
-                        <tr>
-                            <td>Total:</td>
-                            <td>${sum.toFixed(2)}</td>                        
-                        </tr>
-                        <tr>                            
-                            <td colSpan="2" style={{'text-align':'center', 'width':'100%'}}>
-                                <Button className="btn btn-primary">
-                                    Checkout
-                                </Button>
-                            </td>                                                  
-                            {/* <td>@twitter</td>                             */}
-                        </tr>
-                        </tbody>
-                    </Table>
+                        <Col md={12}>                        
+                        <Table striped bordered hover>                                        
+                            <tbody>
+                            {this.state.orderAPI.map(
+                                (order) => <tr><td colSpan="2" style={{'text-align':'center', 'width':'100%','text-decoration':'underline','color':'blue'}}>{order.description}</td> </tr>
+                            )}    
+                            
+                            <tr>                                                    
+                                <td>Discount:</td>
+                                <td>${(sum*5/100).toFixed(2)}</td>                        
+                            </tr>
+                            <tr>                        
+                                <td>Subtotal:</td>
+                                <td>${((sum)-(sum*5/100)).toFixed(2)}</td>                        
+                            </tr>
+                            <tr>
+                                <td>Total:</td>
+                                <td>${sum.toFixed(2)}</td>                        
+                            </tr>
+                            <tr>                            
+                                <td colSpan="2" style={{'text-align':'center', 'width':'100%'}}>
+                                    <Button className="btn btn-primary">
+                                        Checkout
+                                    </Button>
+                                </td>                                                  
+                                {/* <td>@twitter</td>                             */}
+                            </tr>
+                            </tbody>
+                        </Table>                    
                     </Col>
                     </Row>
         );
