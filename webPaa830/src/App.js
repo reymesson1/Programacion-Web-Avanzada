@@ -3908,23 +3908,26 @@ class CardNarv extends React.Component{
                         <Table striped bordered hover>                                        
                             <tbody>
                             {this.state.orderAPI.map(
-                                (order) => <tr><td colSpan="2" style={{'text-align':'center', 'width':'100%','text-decoration':'underline','color':'blue'}}>{order.description}</td> </tr>
+                                (order) => <tr><td colSpan="2" style={{'text-align':'center', 'width':'100%','text-decoration':'underline','color':'blue'}}>{order.description}</td> <td>${parseInt(order.project).toFixed(2)}</td> </tr>
                             )}    
                             
                             <tr>                                                    
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                 <td>Discount:</td>
                                 <td>${(sum*5/100).toFixed(2)}</td>                        
                             </tr>
                             <tr>                        
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                 <td>Subtotal:</td>
                                 <td>${((sum)-(sum*5/100)).toFixed(2)}</td>                        
                             </tr>
                             <tr>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                 <td>Total:</td>
                                 <td>${sum.toFixed(2)}</td>                        
                             </tr>
                             <tr>                            
-                                <td colSpan="2" style={{'text-align':'center', 'width':'100%'}}>
+                                <td colSpan="3" style={{'text-align':'center', 'width':'100%'}}>
                                     <Button className="btn btn-primary">
                                         Checkout
                                     </Button>

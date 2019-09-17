@@ -5735,12 +5735,24 @@ var CardNarv = function (_React$Component51) {
                                         { colSpan: '2', style: { 'text-align': 'center', 'width': '100%', 'text-decoration': 'underline', 'color': 'blue' } },
                                         order.description
                                     ),
+                                    ' ',
+                                    React.createElement(
+                                        'td',
+                                        null,
+                                        '$',
+                                        parseInt(order.project).toFixed(2)
+                                    ),
                                     ' '
                                 );
                             }),
                             React.createElement(
                                 'tr',
                                 null,
+                                React.createElement(
+                                    'td',
+                                    null,
+                                    '\xA0\xA0\xA0\xA0\xA0\xA0'
+                                ),
                                 React.createElement(
                                     'td',
                                     null,
@@ -5759,6 +5771,11 @@ var CardNarv = function (_React$Component51) {
                                 React.createElement(
                                     'td',
                                     null,
+                                    '\xA0\xA0\xA0\xA0\xA0\xA0'
+                                ),
+                                React.createElement(
+                                    'td',
+                                    null,
                                     'Subtotal:'
                                 ),
                                 React.createElement(
@@ -5771,6 +5788,11 @@ var CardNarv = function (_React$Component51) {
                             React.createElement(
                                 'tr',
                                 null,
+                                React.createElement(
+                                    'td',
+                                    null,
+                                    '\xA0\xA0\xA0\xA0\xA0\xA0'
+                                ),
                                 React.createElement(
                                     'td',
                                     null,
@@ -5788,7 +5810,7 @@ var CardNarv = function (_React$Component51) {
                                 null,
                                 React.createElement(
                                     'td',
-                                    { colSpan: '2', style: { 'text-align': 'center', 'width': '100%' } },
+                                    { colSpan: '3', style: { 'text-align': 'center', 'width': '100%' } },
                                     React.createElement(
                                         Button,
                                         { className: 'btn btn-primary' },
