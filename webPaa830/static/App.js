@@ -1342,6 +1342,7 @@ var Toolbar = function (_React$Component9) {
                             )
                         )
                     ),
+                    React.createElement('i', { style: { 'position': 'absolute', 'left': '79%', 'top': '36%' }, className: 'fa fa-shopping-cart', 'aria-hidden': 'true' }),
                     React.createElement(
                         NavDropdown,
                         { style: { 'float': 'right', 'position': 'absolute', 'left': '80%' }, eventKey: 3, title: 'Cart', id: 'basic-nav-dropdown' },
