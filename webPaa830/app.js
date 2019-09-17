@@ -9,7 +9,9 @@ var dba = require('./lib/dba-helper.js')();
 app.use(bodyParser.json());
 var cookies = false;
 var User = require('./models/user.js');
+var Order = require('./models/order.js');
 var masterController = require('./controller/masterController');
+var orderController = require('./controller/orderController');
 
 app.get('/cookies', function(req,res){
 
@@ -25,7 +27,6 @@ app.post('/cookies', function(req,res){
         cookies=true;
     }
 });
-    
 
 app.get('/master', masterController.getMaster)
 
@@ -88,14 +89,6 @@ app.get('/weeklyreportrecap',function(req,res){
 
 })
 
-app.get('/weeklyreportrecapfour',function(req,res){
-
-    dba.getWeeklyReportRecapFour({}, function(data){
-            res.send(data);
-    });
-
-})
-
 app.get('/weeklyreportbydev',function(req,res){
 
 	dba.getWeeklyReportbyDevelopment({},function(data){
@@ -135,12 +128,15 @@ app.post('/register', async (req, res)=>{
     
     var userData = req.body;
 
+    console.log(userData)
+
     var user = new User({
-        "username":userData.username
+        "username":userData.username,
+        "email":userData.email
     })
-    bcrypt.hash(userData.password, null, null, (err, hash)=>{                   
-        user.password = hash;          
-    })
+    // bcrypt.hash(userData.password, null, null, (err, hash)=>{                   
+        user.password = "1234";
+    // })
     user.save(function(err){
         if(!err){
             console.log('User saved');
@@ -152,22 +148,30 @@ app.post('/register', async (req, res)=>{
 app.post('/login', async (req, res)=>{
     var userData = req.body;
     var user = await User.findOne({username: userData.username});
-    
-    if(!user){
+
+    if(!user){        
         return res.status(401).send({message: 'Email or Password Invalid'})
     }
 
-    bcrypt.compare(userData.password, user.password, (err, isMatch) =>{
-        if(!isMatch){
-            return res.status(401).send({message: 'Email or Password Invalid'})
-        }
+    // bcrypt.compare("1234", "1234", (err, isMatch) =>{
+    //     // if(!isMatch){
+    //     //     return res.status(401).send({message: 'Email or Password Invalid'})
+    //     // }
         
+    // var payload = { sub: user._id }
+
+    // var token = jwt.encode(payload, '123')
+
+    // res.status(200).send({token})
+    // })
+
     var payload = { sub: user._id }
 
     var token = jwt.encode(payload, '123')
 
     res.status(200).send({token})
-    })
+
+    
 
 })
 
@@ -197,10 +201,21 @@ app.get('/counter', masterController.getMasterCounter);
 
 app.post('/addcounter', masterController.setMasterCounter);  
 
-mongoose.connect('mongodb://localhost:27017/madison',(err)=>{
+app.post('/updateitemdetail', masterController.updateMasterItem)
+
+app.post('/updatemasterlike', masterController.updateMasterLike)
+
+app.post('/orders', orderController.getOrder)
+
+app.post('/addorder', orderController.setOrder)
+
+app.post('/newcomment', masterController.setMasterComment)
+
+
+mongoose.connect('mongodb://localhost:27017/spf',(err)=>{
     if(!err){
         console.log('Connected to mongo Database');
     }
 })
 
-app.listen(8087);
+app.listen(8084);
