@@ -1150,6 +1150,7 @@ class Master extends React.Component{
 
         let newItem = {
             
+            "id": Date.now(),
             "username" : token(),
             "quantity" : "1",
             "project" : filteredData[0].project,
@@ -3871,7 +3872,7 @@ class CardNarv extends React.Component{
         //     })
         // })
         let newItem = {
-
+            
             "user" : token()
         }
         fetch(API_URL+'/orders', {
@@ -3887,6 +3888,25 @@ class CardNarv extends React.Component{
                 orderAPI: responseData
             })
         })
+        .catch((error)=>{
+            console.log('Error fetching and parsing data', error);
+        })
+    }
+
+    onDelete(value){
+
+        let newItem = {
+
+            "id": value
+        }
+        
+        fetch(API_URL+'/removeorder', {
+            
+            method: 'post',
+            headers: API_HEADERS,
+            body: JSON.stringify(newItem)
+        })
+        .then((response)=>response.json())        
         .catch((error)=>{
             console.log('Error fetching and parsing data', error);
         })
@@ -3909,26 +3929,33 @@ class CardNarv extends React.Component{
                         <Table striped bordered hover>                                        
                             <tbody>
                             {this.state.orderAPI.map(
-                                (order) => <tr><td colSpan="2" style={{'text-align':'center', 'width':'100%','text-decoration':'underline','color':'blue'}}>{order.description}</td> <td>${parseInt(order.project).toFixed(2)}</td> </tr>
+                                (order) =>  <tr>
+                                                <td colSpan="2" style={{'text-align':'center', 'width':'100%','text-decoration':'underline','color':'blue'}}>{order.description}</td>
+                                                <td>${parseInt(order.project).toFixed(2)}</td>
+                                                <td style={{'color':'red','text-align':'center'}}><i onClick={this.onDelete.bind(this, order.id)} className="fa fa-trash" aria-hidden="true"></i></td>
+                                            </tr>
                             )}    
                             
                             <tr>                                                    
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                 <td>Discount:</td>
                                 <td>${(sum*5/100).toFixed(2)}</td>                        
                             </tr>
                             <tr>                        
                                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                 <td>Subtotal:</td>
                                 <td>${((sum)-(sum*5/100)).toFixed(2)}</td>                        
                             </tr>
                             <tr>
                                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                 <td>Total:</td>
                                 <td>${sum.toFixed(2)}</td>                        
                             </tr>
                             <tr>                            
-                                <td colSpan="3" style={{'text-align':'center', 'width':'100%'}}>
+                                <td colSpan="4" style={{'text-align':'center', 'width':'100%'}}>
                                     <Button className="btn btn-primary">
                                         Checkout
                                     </Button>

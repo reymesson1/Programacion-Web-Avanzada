@@ -209,6 +209,8 @@ app.post('/orders', orderController.getOrder)
 
 app.post('/addorder', orderController.setOrder)
 
+app.post('/removeorder', orderController.removeOrder)
+
 app.post('/newcomment', masterController.setMasterComment)
 
 

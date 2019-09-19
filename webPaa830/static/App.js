@@ -1664,6 +1664,7 @@ var Master = function (_React$Component12) {
 
             var newItem = {
 
+                "id": Date.now(),
                 "username": token(),
                 "quantity": "1",
                 "project": filteredData[0].project,
@@ -5703,8 +5704,29 @@ var CardNarv = function (_React$Component51) {
             });
         }
     }, {
+        key: 'onDelete',
+        value: function onDelete(value) {
+
+            var newItem = {
+
+                "id": value
+            };
+
+            fetch(API_URL + '/removeorder', {
+
+                method: 'post',
+                headers: API_HEADERS,
+                body: JSON.stringify(newItem)
+            }).then(function (response) {
+                return response.json();
+            }).catch(function (error) {
+                console.log('Error fetching and parsing data', error);
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
+            var _this73 = this;
 
             var sum = 0;
 
@@ -5736,19 +5758,27 @@ var CardNarv = function (_React$Component51) {
                                         { colSpan: '2', style: { 'text-align': 'center', 'width': '100%', 'text-decoration': 'underline', 'color': 'blue' } },
                                         order.description
                                     ),
-                                    ' ',
                                     React.createElement(
                                         'td',
                                         null,
                                         '$',
                                         parseInt(order.project).toFixed(2)
                                     ),
-                                    ' '
+                                    React.createElement(
+                                        'td',
+                                        { style: { 'color': 'red', 'text-align': 'center' } },
+                                        React.createElement('i', { onClick: _this73.onDelete.bind(_this73, order.id), className: 'fa fa-trash', 'aria-hidden': 'true' })
+                                    )
                                 );
                             }),
                             React.createElement(
                                 'tr',
                                 null,
+                                React.createElement(
+                                    'td',
+                                    null,
+                                    '\xA0\xA0\xA0\xA0\xA0\xA0'
+                                ),
                                 React.createElement(
                                     'td',
                                     null,
@@ -5777,6 +5807,11 @@ var CardNarv = function (_React$Component51) {
                                 React.createElement(
                                     'td',
                                     null,
+                                    '\xA0\xA0\xA0\xA0\xA0\xA0'
+                                ),
+                                React.createElement(
+                                    'td',
+                                    null,
                                     'Subtotal:'
                                 ),
                                 React.createElement(
@@ -5789,6 +5824,11 @@ var CardNarv = function (_React$Component51) {
                             React.createElement(
                                 'tr',
                                 null,
+                                React.createElement(
+                                    'td',
+                                    null,
+                                    '\xA0\xA0\xA0\xA0\xA0\xA0'
+                                ),
                                 React.createElement(
                                     'td',
                                     null,
@@ -5811,7 +5851,7 @@ var CardNarv = function (_React$Component51) {
                                 null,
                                 React.createElement(
                                     'td',
-                                    { colSpan: '3', style: { 'text-align': 'center', 'width': '100%' } },
+                                    { colSpan: '4', style: { 'text-align': 'center', 'width': '100%' } },
                                     React.createElement(
                                         Button,
                                         { className: 'btn btn-primary' },
@@ -5835,19 +5875,19 @@ var Order = function (_React$Component52) {
     function Order() {
         _classCallCheck(this, Order);
 
-        var _this73 = _possibleConstructorReturn(this, (Order.__proto__ || Object.getPrototypeOf(Order)).call(this));
+        var _this74 = _possibleConstructorReturn(this, (Order.__proto__ || Object.getPrototypeOf(Order)).call(this));
 
-        _this73.state = {
+        _this74.state = {
 
             orderAPI: []
         };
-        return _this73;
+        return _this74;
     }
 
     _createClass(Order, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            var _this74 = this;
+            var _this75 = this;
 
             // fetch(API_URL+'/orders/'+token(),{headers: API_HEADERS})
             // .then((response)=>response.json())
@@ -5869,7 +5909,7 @@ var Order = function (_React$Component52) {
             }).then(function (response) {
                 return response.json();
             }).then(function (responseData) {
-                _this74.setState({
+                _this75.setState({
 
                     orderAPI: responseData
                 });

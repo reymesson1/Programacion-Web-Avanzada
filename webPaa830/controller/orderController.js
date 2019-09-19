@@ -66,3 +66,41 @@ exports.setOrder = async(req,res)=>{
 
 
 }
+
+
+exports.removeOrder = async(req,res)=>{
+  
+
+    console.log(req.body);
+
+    var order = await Order.remove({"id":req.body.id},function(err,m){
+        
+        if(!err){
+            
+        
+                console.log('Removed Updated');
+        
+        }
+    })
+//   var decode = jwt.decode(req.body.username,'123')
+  
+//   setLogin(decode.sub)
+  
+//   setTimeout(() => {
+  
+//     var order = req.body
+//     order["username"] = userDB
+
+//     var orderDB = new Order(order); 
+//     orderDB.save(function(err,o){
+        
+//         if(!err){
+//             console.log('Order Saved!')
+//         }
+
+//     })   
+//     res.send(orderDB)
+//   }, 5000);
+
+
+}
