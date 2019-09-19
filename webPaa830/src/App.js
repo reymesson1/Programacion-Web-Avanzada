@@ -934,14 +934,7 @@ class Master extends React.Component{
 
     componentDidMount(){
 
-        fetch(API_URL+'/master',{headers: API_HEADERS})
-        .then((response)=>response.json())
-        .then((responseData)=>{
-            this.setState({
-
-                masterAPI: responseData
-            })
-        })
+        
         fetch(API_URL+'/counter',{headers: API_HEADERS})
         .then((response)=>response.json())
         .then((responseData)=>{

@@ -1447,14 +1447,6 @@ var Master = function (_React$Component12) {
         value: function componentDidMount() {
             var _this16 = this;
 
-            fetch(API_URL + '/master', { headers: API_HEADERS }).then(function (response) {
-                return response.json();
-            }).then(function (responseData) {
-                _this16.setState({
-
-                    masterAPI: responseData
-                });
-            });
             fetch(API_URL + '/counter', { headers: API_HEADERS }).then(function (response) {
                 return response.json();
             }).then(function (responseData) {
