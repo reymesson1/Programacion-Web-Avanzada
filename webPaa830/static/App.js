@@ -49,8 +49,7 @@ var API_URL = 'http://localhost:8084';
 
 var API_HEADERS = {
 
-    'Content-Type': 'application/json',
-    Authentication: 'any-string-you-like'
+    'Content-Type': 'application/json'
 };
 
 var TOKEN_KEY = "token";
@@ -1437,7 +1436,8 @@ var Master = function (_React$Component12) {
             masterDetail: [],
             counter: [],
             idSelected: 0,
-            cart: []
+            cart: [],
+            aws: {}
         };
         return _this15;
     }
@@ -1462,6 +1462,15 @@ var Master = function (_React$Component12) {
 
                     counter: responseData
                 });
+            });
+            // fetch('http://localhost:8087/master',{headers: API_HEADERS})
+            fetch('https://xe887orz85.execute-api.us-east-1.amazonaws.com/live/item', { headers: API_HEADERS }).then(function (response) {
+                return response.json();
+            }).then(function (responseData) {
+                _this16.setState({
+
+                    aws: responseData
+                });
             }).catch(function (error) {
                 console.log('Error fetching and parsing data', error);
             });
@@ -1470,6 +1479,11 @@ var Master = function (_React$Component12) {
 
                 parameter: this.props.params.actionid
             });
+
+            setTimeout(function () {
+
+                console.log(_this16.state.aws);
+            }, 5000);
         }
     }, {
         key: 'close',

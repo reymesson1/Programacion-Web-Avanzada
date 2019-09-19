@@ -37,8 +37,7 @@ const API_URL = 'http://localhost:8084';
 
 const API_HEADERS = {
 
-    'Content-Type':'application/json',
-    Authentication: 'any-string-you-like'
+    'Content-Type':'application/json'
 }
 
 const TOKEN_KEY = "token";
@@ -928,7 +927,8 @@ class Master extends React.Component{
             masterDetail: [],
             counter: [],
             idSelected: 0,
-            cart: []
+            cart: [],
+            aws: {}
         };
     }
 
@@ -950,6 +950,15 @@ class Master extends React.Component{
                 counter: responseData
             })
         })
+        // fetch('http://localhost:8087/master',{headers: API_HEADERS})
+        fetch('https://xe887orz85.execute-api.us-east-1.amazonaws.com/live/item',{headers: API_HEADERS})
+        .then((response)=>response.json())
+        .then((responseData)=>{
+            this.setState({
+
+                aws: responseData
+            })
+        })
         .catch((error)=>{
             console.log('Error fetching and parsing data', error);
         })
@@ -958,6 +967,11 @@ class Master extends React.Component{
 
             parameter: this.props.params.actionid
         });
+
+        setTimeout(() => {
+            
+            console.log(this.state.aws)
+        }, 5000);
 
     }
 

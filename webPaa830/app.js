@@ -4,6 +4,16 @@ var mongoose = require('mongoose');
 var bcrypt = require('bcrypt-nodejs');
 var jwt = require('jwt-simple');
 var app = express();
+var cors = require('cors')
+app.use(cors())
+app.options('*', cors())
+app.use(cors({
+    'allowedHeaders': ['sessionId', 'Content-Type'],
+    'exposedHeaders': ['sessionId'],
+    'origin': '*',
+    'methods': 'GET,HEAD,PUT,PATCH,POST,DELETE',
+    'preflightContinue': false
+  }));
 app.use(express.static('static'))
 var dba = require('./lib/dba-helper.js')();
 app.use(bodyParser.json());
