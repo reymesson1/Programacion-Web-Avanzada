@@ -949,14 +949,13 @@ class Master extends React.Component{
 
                 counter: responseData
             })
-        })
-        // fetch('http://localhost:8087/master',{headers: API_HEADERS})
+        })        
         fetch('https://xe887orz85.execute-api.us-east-1.amazonaws.com/live/item',{headers: API_HEADERS})
         .then((response)=>response.json())
         .then((responseData)=>{
             this.setState({
 
-                aws: responseData
+                masterAPI: responseData
             })
         })
         .catch((error)=>{
@@ -967,11 +966,6 @@ class Master extends React.Component{
 
             parameter: this.props.params.actionid
         });
-
-        setTimeout(() => {
-            
-            console.log(this.state.aws)
-        }, 5000);
 
     }
 
