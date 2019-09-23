@@ -1672,7 +1672,8 @@ var Master = function (_React$Component12) {
 
                 // console.log(newItem)
 
-            };fetch(API_URL + '/addorder', {
+                // fetch(API_URL+'/addorder', {
+            };fetch('https://on3eon5uoh.execute-api.us-east-1.amazonaws.com/live/addorder', {
 
                 method: 'post',
                 headers: API_HEADERS,
@@ -5687,12 +5688,8 @@ var CardNarv = function (_React$Component51) {
 
                 "user": token()
             };
-            fetch(API_URL + '/orders', {
 
-                method: 'post',
-                headers: API_HEADERS,
-                body: JSON.stringify(newItem)
-            }).then(function (response) {
+            fetch('https://on3eon5uoh.execute-api.us-east-1.amazonaws.com/live/-orders', { headers: API_HEADERS }).then(function (response) {
                 return response.json();
             }).then(function (responseData) {
                 _this72.setState({

@@ -1160,7 +1160,8 @@ class Master extends React.Component{
 
         // console.log(newItem)
 
-        fetch(API_URL+'/addorder', {
+        // fetch(API_URL+'/addorder', {
+        fetch('https://on3eon5uoh.execute-api.us-east-1.amazonaws.com/live/addorder', {
             
             method: 'post',
             headers: API_HEADERS,
@@ -3876,16 +3877,12 @@ class CardNarv extends React.Component{
             
             "user" : token()
         }
-        fetch(API_URL+'/orders', {
-            
-            method: 'post',
-            headers: API_HEADERS,
-            body: JSON.stringify(newItem)
-        })
+
+        fetch('https://on3eon5uoh.execute-api.us-east-1.amazonaws.com/live/-orders',{headers: API_HEADERS})
         .then((response)=>response.json())
         .then((responseData)=>{
             this.setState({
-    
+  
                 orderAPI: responseData
             })
         })
