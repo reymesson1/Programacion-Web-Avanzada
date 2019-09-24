@@ -2037,90 +2037,57 @@ var MasterTable = function (_React$Component15) {
                 rows.push(React.createElement(
                     Col,
                     { item: true, md: 4 },
+                    React.createElement('br', null),
                     React.createElement(
-                        Panel,
-                        { header: 'Juan Perez post at ' + items[i].name },
+                        'div',
+                        { className: 'card' },
                         React.createElement(
-                            'div',
-                            { className: 'card' },
+                            Row,
+                            null,
                             React.createElement(
-                                Row,
-                                null,
-                                React.createElement(
-                                    Col,
-                                    { md: 12 },
-                                    React.createElement(
-                                        'p',
-                                        null,
-                                        'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.'
-                                    )
-                                )
-                            ),
-                            React.createElement(
-                                Row,
-                                null,
+                                Col,
+                                { md: 6 },
                                 React.createElement(
                                     Link,
                                     { to: '/actions/' + items[i].id },
-                                    React.createElement('img', { src: "http://localhost:8084/executed/" + items[i].image, alt: 'Avatar', style: { "width": "100%", "padding-left": "10px", "padding-right": "10px" } })
+                                    React.createElement('img', { src: "http://localhost:8084/executed/" + items[i].image, alt: 'Avatar', style: { "width": "100%", "height": "100%", "padding-left": "10px", "padding-right": "10px" } })
                                 )
                             ),
                             React.createElement(
-                                'div',
-                                null,
+                                Col,
+                                { md: 6 },
                                 React.createElement(
                                     Row,
                                     null,
                                     React.createElement(
-                                        Col,
-                                        { md: 4, sm: 4, xs: 2 },
-                                        React.createElement(
-                                            'h5',
-                                            null,
-                                            React.createElement('i', { className: 'fa fa-thumbs-up', 'aria-hidden': 'true' }),
-                                            ' ',
-                                            items[i].like
-                                        )
-                                    ),
-                                    React.createElement(
-                                        Col,
-                                        { md: 4, sm: 4, xs: 2 },
-                                        React.createElement(
-                                            'h5',
-                                            null,
-                                            React.createElement(
-                                                'b',
-                                                null,
-                                                '77'
-                                            ),
-                                            ' Comments'
-                                        )
-                                    ),
-                                    React.createElement(
-                                        Col,
-                                        { md: 4, sm: 4, xs: 2 },
-                                        React.createElement(
-                                            'h5',
-                                            null,
-                                            '88',
-                                            ' Shared'
-                                        )
+                                        'h5',
+                                        null,
+                                        React.createElement('i', { style: { 'color': 'gold' }, className: 'fa fa-star', 'aria-hidden': 'true' }),
+                                        React.createElement('i', { style: { 'color': 'gold' }, className: 'fa fa-star', 'aria-hidden': 'true' }),
+                                        React.createElement('i', { style: { 'color': 'gold' }, className: 'fa fa-star', 'aria-hidden': 'true' }),
+                                        React.createElement('i', { className: 'fa fa-star', 'aria-hidden': 'true' }),
+                                        React.createElement('i', { className: 'fa fa-star', 'aria-hidden': 'true' })
                                     )
                                 ),
                                 React.createElement(
                                     Row,
                                     null,
                                     React.createElement(
-                                        Col,
-                                        { md: 6 },
-                                        React.createElement(
-                                            'p',
-                                            null,
-                                            'Architect  Engineer'
-                                        )
+                                        'h5',
+                                        null,
+                                        items[i].name
                                     )
                                 ),
-                                React.createElement('hr', null),
+                                React.createElement(
+                                    Row,
+                                    null,
+                                    React.createElement(
+                                        'h5',
+                                        null,
+                                        '$   ',
+                                        items[i].project.toFixed(2)
+                                    )
+                                ),
                                 React.createElement(
                                     Row,
                                     { style: { 'background-color': '#f7f7f7' } },
@@ -2132,23 +2099,22 @@ var MasterTable = function (_React$Component15) {
                                             isLiked: items[i].isLiked,
                                             onLike: this.props.masterCallback.onlike.bind(this)
                                         })
-                                    ),
-                                    React.createElement(Col, { md: 5, sm: 5, xs: 3 })
+                                    )
                                 )
                             )
-                        ),
-                        items[i].comments.map(function (comment) {
-                            return React.createElement(MasterTableCommentDisplay, {
-                                id: items[i].id,
-                                isLiked: items[i].isLiked,
-                                masterAPI: _this20.props.masterData,
-                                onComment: _this20.props.masterCallback.oncomment.bind(_this20),
-                                onShow: _this20.onComment.bind(_this20),
-                                onShowComment: _this20.state.onShowComment,
-                                text: comment.comment
-                            });
-                        })
-                    )
+                        )
+                    ),
+                    items[i].comments.map(function (comment) {
+                        return React.createElement(MasterTableCommentDisplay, {
+                            id: items[i].id,
+                            isLiked: items[i].isLiked,
+                            masterAPI: _this20.props.masterData,
+                            onComment: _this20.props.masterCallback.oncomment.bind(_this20),
+                            onShow: _this20.onComment.bind(_this20),
+                            onShowComment: _this20.state.onShowComment,
+                            text: comment.comment
+                        });
+                    })
                 ));
             }
 

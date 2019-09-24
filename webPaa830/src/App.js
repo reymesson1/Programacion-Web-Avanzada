@@ -1472,56 +1472,45 @@ class MasterTable extends React.Component{
         for(var i=0;i<items.length;i++){
             
             rows.push(
-                
-                    
                     <Col item md={4}> 
-                        <Panel header={ 'Juan Perez post at ' + items[i].name}>
-                            
-                                <div className="card">
-                                     <Row>                                            
-                                        <Col md={12}>
-                                            <p>
-                                                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.
-                                            </p>
-                                        </Col>                                        
-                                     </Row>
-                                     <Row>                                    
-                                        <Link  to={'/actions/'+items[i].id}>
-                                            <img src={"http://localhost:8084/executed/"+items[i].image}  alt="Avatar" style={{"width":"100%","padding-left":"10px","padding-right":"10px"}}/>
-                                            {/* <img src={"http://localhost:8084/executed/"+items[i].image}  alt="Avatar" style={{"width":"100%","padding-left":"10px","padding-right":"10px"}}/> */}
-                                        </Link>
-                                     </Row>
-                                     <div>
-                                        <Row>
-                                             <Col md={4} sm={4} xs={2}>
-                                                 <h5><i className="fa fa-thumbs-up" aria-hidden="true"></i> {items[i].like}</h5>
-                                             </Col>
-                                             <Col md={4} sm={4} xs={2} >
-                                                 <h5><b>{'77'}</b> Comments</h5>
-                                             </Col>
-                                             <Col md={4} sm={4} xs={2}>
-                                                 <h5>{'88'} Shared</h5>
-                                             </Col>
-                                         </Row>
-                                         <Row>
-                                             <Col md={6}>
-                                                <p>Architect  Engineer</p>                                         
-                                             </Col>
-                                         </Row>
-                                         <hr/>
-                                         <Row style={{'background-color':'#f7f7f7'}}>                                        
-                                             <Col md={5} sm={5} xs={3}>
-                                                 <MasterTableLike                                                        
+                        <br/>
+
+                                <div className="card">                                    
+                                     <Row>   
+                                        <Col md={6}>                                    
+                                            <Link  to={'/actions/'+items[i].id}>
+                                                <img src={"http://localhost:8084/executed/"+items[i].image}  alt="Avatar" style={{"width":"100%","height":"100%","padding-left":"10px","padding-right":"10px"}}/>
+                                                {/* <img src={"http://localhost:8084/executed/"+items[i].image}  alt="Avatar" style={{"width":"100%","padding-left":"10px","padding-right":"10px"}}/> */}
+                                            </Link>
+                                        </Col>
+                                        <Col md={6}>   
+                                            <Row>
+                                                <h5 >
+                                                    <i style={{'color':'gold'}} className="fa fa-star" aria-hidden="true"></i>
+                                                    <i style={{'color':'gold'}} className="fa fa-star" aria-hidden="true"></i>
+                                                    <i style={{'color':'gold'}} className="fa fa-star" aria-hidden="true"></i>
+                                                    <i className="fa fa-star" aria-hidden="true"></i>
+                                                    <i className="fa fa-star" aria-hidden="true"></i>
+                                                </h5>
+                                            </Row>
+                                            <Row>
+                                                <h5>{items[i].name}</h5>
+                                            </Row>
+                                            <Row>
+                                                <h5>$   {items[i].project.toFixed(2)}</h5>
+                                            </Row>
+                                            <Row style={{'background-color':'#f7f7f7'}}>                                        
+                                                <Col md={5} sm={5} xs={3}>
+                                                    <MasterTableLike                                                        
                                                         id={items[i].id}
                                                         isLiked={items[i].isLiked}
                                                         onLike={this.props.masterCallback.onlike.bind(this)}
-                                                 />
-                                             </Col>
-                                             <Col md={5} sm={5} xs={3} >
-                                                 
-                                             </Col>
-                                         </Row>
-                                     </div>
+                                                    />
+                                                </Col>
+                                            </Row>
+                                        </Col>
+                                     </Row>
+
                                 </div>                                
                                 {items[i].comments.map(
                                     (comment) => 
@@ -1535,9 +1524,8 @@ class MasterTable extends React.Component{
                                     text={comment.comment}
                                     />
                                 )}
-
-                        </Panel>
                     </Col>
+                    
                 
             )
         }
