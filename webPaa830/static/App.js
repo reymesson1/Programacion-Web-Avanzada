@@ -1320,7 +1320,7 @@ var Toolbar = function (_React$Component9) {
                         React.createElement(
                             Link,
                             { to: '/', onClick: this.onRefreshed.bind(this) },
-                            React.createElement('img', { src: 'http://localhost:8084/testiiiing.jpg', width: '60px', height: '60px' })
+                            React.createElement('img', { src: 'http://localhost:8084/testiiiing.jpg', width: '100px', height: '100px' })
                         )
                     )
                 ),
@@ -1329,7 +1329,7 @@ var Toolbar = function (_React$Component9) {
                     null,
                     React.createElement(
                         'li',
-                        { style: { "top": "15px" } },
+                        { style: { "top": "40px" } },
                         React.createElement(
                             Form,
                             { inline: true, style: { "height": "10%" } },
@@ -1344,7 +1344,7 @@ var Toolbar = function (_React$Component9) {
                     React.createElement('i', { style: { 'position': 'absolute', 'left': '79%', 'top': '42%', 'font-size': '20px' }, className: 'fa fa-shopping-cart', 'aria-hidden': 'true' }),
                     React.createElement(
                         NavDropdown,
-                        { style: { 'float': 'right', 'position': 'absolute', 'left': '80%', 'top': '23%', 'font-size': '20px' }, eventKey: 3, title: 'Cart', id: 'basic-nav-dropdown' },
+                        { style: { 'float': 'right', 'position': 'absolute', 'left': '80%', 'top': '29%', 'font-size': '20px' }, eventKey: 3, title: 'Cart', id: 'basic-nav-dropdown' },
                         React.createElement(CardNarv, null)
                     )
                 )

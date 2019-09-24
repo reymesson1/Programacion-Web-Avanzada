@@ -854,18 +854,18 @@ class Toolbar extends React.Component{
             
                     <div className="navbar-header" >
                         <div className="navbar-brand" style={{"height":"10%"}}>
-                            <Link to={'/'} onClick={this.onRefreshed.bind(this)}><img src="http://localhost:8084/testiiiing.jpg" width="60px" height="60px" /></Link>
+                            <Link to={'/'} onClick={this.onRefreshed.bind(this)}><img src="http://localhost:8084/testiiiing.jpg" width="100px" height="100px" /></Link>
                         </div>
                     </div>
                     <Nav>                      
-                      <li style={{"top":"15px"}}>
+                      <li style={{"top":"40px"}}>
                       <Form inline style={{"height":"10%"}}>
                             <FormControl style={{'width':'700px', 'margin-top':'10px'}} type="text" placeholder="Search" className="mr-sm-2" />
                             <Button style={{'margin-top':'10px'}} variant="outline-success"><i className="fa fa-search" aria-hidden="true"></i></Button>
                       </Form>
                       </li>
                       <i style={{'position':'absolute','left':'79%','top':'42%','font-size':'20px'}} className="fa fa-shopping-cart" aria-hidden="true"></i>
-                      <NavDropdown style={{'float':'right','position':'absolute','left':'80%', 'top':'23%', 'font-size':'20px'}} eventKey={3} title="Cart" id="basic-nav-dropdown">                      
+                      <NavDropdown style={{'float':'right','position':'absolute','left':'80%', 'top':'29%', 'font-size':'20px'}} eventKey={3} title="Cart" id="basic-nav-dropdown">                      
                             <CardNarv />                            
                       </NavDropdown>   
                     </Nav>
