@@ -5745,7 +5745,7 @@ var CardNarv = function (_React$Component51) {
                                     ),
                                     React.createElement(
                                         'td',
-                                        { style: { 'color': 'red', 'text-align': 'center' } },
+                                        { style: { 'text-align': 'center', 'font-size': '18px' } },
                                         React.createElement('i', { onClick: _this73.onDelete.bind(_this73, order.id), className: 'fa fa-trash', 'aria-hidden': 'true' })
                                     )
                                 );

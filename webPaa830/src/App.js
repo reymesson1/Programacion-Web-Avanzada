@@ -3925,7 +3925,7 @@ class CardNarv extends React.Component{
                                                 <td colSpan="3" style={{'text-decoration':'none !important','text-align':'center', 'width':'100%'}}>{order.description}</td>
                                                 <td colSpan="2">qty: {parseInt(order.quantity)}</td>
                                                 <td>US${parseInt(order.project).toFixed(2)}</td>
-                                                <td style={{'color':'red','text-align':'center'}}><i onClick={this.onDelete.bind(this, order.id)} className="fa fa-trash" aria-hidden="true"></i></td>
+                                                <td style={{'text-align':'center','font-size':'18px'}}><i onClick={this.onDelete.bind(this, order.id)} className="fa fa-trash" aria-hidden="true"></i></td>
                                             </tr>
                             )}    
                             
