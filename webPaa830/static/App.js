@@ -2062,8 +2062,6 @@ var MasterTable = function (_React$Component15) {
                 return master.name.indexOf(_this20.props.searchText) !== -1;
             });
 
-            console.log(this.props.searchText);
-
             for (var i = 0; i < items.length; i++) {
 
                 rows.push(React.createElement(

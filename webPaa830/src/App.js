@@ -1502,8 +1502,6 @@ class MasterTable extends React.Component{
             (master) => master.name.indexOf(this.props.searchText) !== -1
         )
 
-        console.log(this.props.searchText)
-
         for(var i=0;i<items.length;i++){
             
             rows.push(
