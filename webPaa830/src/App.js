@@ -32,6 +32,8 @@ const Autosuggest = Autosuggest;
 
 const moment = moment;
 
+var global = undefined
+
 // const API_URL = 'http://localhost:8084';
 const API_URL = 'http://localhost:8084'; 
 
@@ -59,7 +61,8 @@ class App extends React.Component{
           cookies: false,
           visibility: false,
           cssActiveLogin: "active",
-          cssActiveRegistraction: "inactive"
+          cssActiveRegistraction: "inactive",
+          searchText: ""
       }
   }
 
@@ -160,6 +163,13 @@ class App extends React.Component{
     }
 
 
+  onSearch(event){
+      this.setState({
+          searchText: event.target.value
+      })
+  }
+
+
 
   render() {
 
@@ -185,9 +195,14 @@ class App extends React.Component{
     let dashboard = (
 
           <div>
-            <Toolbar />
+            <Toolbar
+                searchCallback={this.onSearch.bind(this)}
+             />
             <div className="container">
-                {this.props.children}
+                {/* {this.props.children} */}
+                <Master                    
+                    searchText={this.state.searchText}
+                />
             </div>
           </div>
 
@@ -266,7 +281,7 @@ class Actions extends React.Component{
         
         this.setState({
 
-            parameter: this.props.params.actionid
+            // parameter: this.props.params.actionid
         });
 
 
@@ -290,7 +305,7 @@ class Actions extends React.Component{
 
         let newMaster = {
             
-            "id": this.props.params.actionid,
+            // "id": this.props.params.actionid,
             "payment": event.target.groupOptions.value
 
         }
@@ -807,6 +822,14 @@ class Registration extends React.Component{
 
 class Toolbar extends React.Component{
 
+    constructor() {
+        
+        super();
+        this.state = {                        
+            searchText: ""
+        };
+    }
+
     componentDidMount(){
 
         document.body.style.backgroundImage = "none";
@@ -822,6 +845,11 @@ class Toolbar extends React.Component{
     onRefreshed(){
         this.props.history.push("/detail")
         window.location.reload();
+    }
+
+    onChanged(event){                 
+        
+        this.props.searchCallback(event);
     }
 
     render(){
@@ -860,7 +888,7 @@ class Toolbar extends React.Component{
                     <Nav>                      
                       <li style={{"top":"40px"}}>
                       <Form inline style={{"height":"10%"}}>
-                            <FormControl style={{'width':'700px', 'margin-top':'10px'}} type="text" placeholder="Search" className="mr-sm-2" />
+                            <FormControl onChange={this.onChanged.bind(this)} name="search" style={{'width':'700px', 'margin-top':'10px'}} type="text" placeholder="Search" className="mr-sm-2" />
                             <Button style={{'margin-top':'10px'}} variant="outline-success"><i className="fa fa-search" aria-hidden="true"></i></Button>
                       </Form>
                       </li>
@@ -957,7 +985,7 @@ class Master extends React.Component{
 
         this.setState({
 
-            parameter: this.props.params.actionid
+            // parameter: this.props.params.actionid
         });
 
     }
@@ -1313,6 +1341,7 @@ onsavemaster:this.onSaveMaster.bind(this)
                 <Row>
             
                         <MasterTable
+                                        searchText={this.props.searchText}
                                         showModal={this.state.showModal}
                                         open={this.open.bind(this)}
                                         close={this.close.bind(this)}
@@ -1443,7 +1472,8 @@ class MasterTable extends React.Component{
         this.state = {
 
             masterAPI: [],
-            onShowComment: "none"
+            onShowComment: "none",
+            searchData : ""
         }
     }
 
@@ -1466,8 +1496,13 @@ class MasterTable extends React.Component{
 
     render(){
 
-        var rows = []
-        var items = this.props.masterData
+        var rows = []        
+
+        let items = this.props.masterData.filter(
+            (master) => master.name.indexOf(this.props.searchText) !== -1
+        )
+
+        console.log(this.props.searchText)
 
         for(var i=0;i<items.length;i++){
             

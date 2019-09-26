@@ -44,6 +44,8 @@ var Autosuggest = Autosuggest;
 
 var moment = moment;
 
+var global = undefined;
+
 // const API_URL = 'http://localhost:8084';
 var API_URL = 'http://localhost:8084';
 
@@ -74,7 +76,8 @@ var App = function (_React$Component) {
             cookies: false,
             visibility: false,
             cssActiveLogin: "active",
-            cssActiveRegistraction: "inactive"
+            cssActiveRegistraction: "inactive",
+            searchText: ""
         };
         return _this;
     }
@@ -173,6 +176,13 @@ var App = function (_React$Component) {
             }
         }
     }, {
+        key: 'onSearch',
+        value: function onSearch(event) {
+            this.setState({
+                searchText: event.target.value
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
 
@@ -192,11 +202,15 @@ var App = function (_React$Component) {
             var dashboard = React.createElement(
                 'div',
                 null,
-                React.createElement(Toolbar, null),
+                React.createElement(Toolbar, {
+                    searchCallback: this.onSearch.bind(this)
+                }),
                 React.createElement(
                     'div',
                     { className: 'container' },
-                    this.props.children
+                    React.createElement(Master, {
+                        searchText: this.state.searchText
+                    })
                 )
             );
 
@@ -311,7 +325,7 @@ var Actions = function (_React$Component2) {
 
             this.setState({
 
-                parameter: this.props.params.actionid
+                // parameter: this.props.params.actionid
             });
         }
     }, {
@@ -335,7 +349,7 @@ var Actions = function (_React$Component2) {
 
             var newMaster = {
 
-                "id": this.props.params.actionid,
+                // "id": this.props.params.actionid,
                 "payment": event.target.groupOptions.value
 
             };
@@ -1207,7 +1221,12 @@ var Toolbar = function (_React$Component9) {
     function Toolbar() {
         _classCallCheck(this, Toolbar);
 
-        return _possibleConstructorReturn(this, (Toolbar.__proto__ || Object.getPrototypeOf(Toolbar)).apply(this, arguments));
+        var _this12 = _possibleConstructorReturn(this, (Toolbar.__proto__ || Object.getPrototypeOf(Toolbar)).call(this));
+
+        _this12.state = {
+            searchText: ""
+        };
+        return _this12;
     }
 
     _createClass(Toolbar, [{
@@ -1228,6 +1247,12 @@ var Toolbar = function (_React$Component9) {
         value: function onRefreshed() {
             this.props.history.push("/detail");
             window.location.reload();
+        }
+    }, {
+        key: 'onChanged',
+        value: function onChanged(event) {
+
+            this.props.searchCallback(event);
         }
     }, {
         key: 'render',
@@ -1333,7 +1358,7 @@ var Toolbar = function (_React$Component9) {
                         React.createElement(
                             Form,
                             { inline: true, style: { "height": "10%" } },
-                            React.createElement(FormControl, { style: { 'width': '700px', 'margin-top': '10px' }, type: 'text', placeholder: 'Search', className: 'mr-sm-2' }),
+                            React.createElement(FormControl, { onChange: this.onChanged.bind(this), name: 'search', style: { 'width': '700px', 'margin-top': '10px' }, type: 'text', placeholder: 'Search', className: 'mr-sm-2' }),
                             React.createElement(
                                 Button,
                                 { style: { 'margin-top': '10px' }, variant: 'outline-success' },
@@ -1468,7 +1493,7 @@ var Master = function (_React$Component12) {
 
             this.setState({
 
-                parameter: this.props.params.actionid
+                // parameter: this.props.params.actionid
             });
         }
     }, {
@@ -1816,6 +1841,7 @@ var Master = function (_React$Component12) {
                     Row,
                     null,
                     React.createElement(MasterTable, {
+                        searchText: this.props.searchText,
                         showModal: this.state.showModal,
                         open: this.open.bind(this),
                         close: this.close.bind(this),
@@ -2001,7 +2027,8 @@ var MasterTable = function (_React$Component15) {
         _this19.state = {
 
             masterAPI: [],
-            onShowComment: "none"
+            onShowComment: "none",
+            searchData: ""
         };
         return _this19;
     }
@@ -2030,7 +2057,12 @@ var MasterTable = function (_React$Component15) {
             var _this20 = this;
 
             var rows = [];
-            var items = this.props.masterData;
+
+            var items = this.props.masterData.filter(function (master) {
+                return master.name.indexOf(_this20.props.searchText) !== -1;
+            });
+
+            console.log(this.props.searchText);
 
             for (var i = 0; i < items.length; i++) {
 
