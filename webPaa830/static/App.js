@@ -5860,12 +5860,12 @@ var CardNarv = function (_React$Component51) {
                                 ),
                                 React.createElement(
                                     'td',
-                                    null,
+                                    { style: { 'font-weight': 'bold', 'font-size': '20px' } },
                                     'Total:'
                                 ),
                                 React.createElement(
                                     'td',
-                                    null,
+                                    { style: { 'font-weight': 'bold', 'font-size': '20px' } },
                                     '$',
                                     sum.toFixed(2)
                                 )
@@ -5878,7 +5878,7 @@ var CardNarv = function (_React$Component51) {
                                     { colSpan: '7', style: { 'text-align': 'center', 'width': '100%' } },
                                     React.createElement(
                                         Button,
-                                        { style: { 'width': '100%' }, className: 'btn btn-primary' },
+                                        { style: { 'width': '100%' }, variant: 'outline-success' },
                                         'Proceed to Checkout \xA0 ',
                                         React.createElement('i', { className: 'fa fa-arrow-right', 'aria-hidden': 'true' })
                                     )

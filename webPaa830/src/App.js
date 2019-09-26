@@ -3953,12 +3953,12 @@ class CardNarv extends React.Component{
                                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
-                                <td>Total:</td>
-                                <td>${sum.toFixed(2)}</td>                        
+                                <td style={{'font-weight':'bold','font-size':'20px'}}>Total:</td>
+                                <td style={{'font-weight':'bold','font-size':'20px'}}>${sum.toFixed(2)}</td>                        
                             </tr>
                             <tr>                            
                                 <td colSpan="7" style={{'text-align':'center', 'width':'100%'}}>
-                                    <Button style={{'width':'100%'}} className="btn btn-primary">
+                                    <Button style={{'width':'100%'}} variant="outline-success">
                                         Proceed to Checkout &nbsp; <i className="fa fa-arrow-right" aria-hidden="true"></i>
                                     </Button>
                                 </td>                                                  
