@@ -864,8 +864,8 @@ class Toolbar extends React.Component{
                             <Button style={{'margin-top':'10px'}} variant="outline-success"><i className="fa fa-search" aria-hidden="true"></i></Button>
                       </Form>
                       </li>
-                      <i style={{'position':'absolute','left':'79%','top':'42%','font-size':'20px'}} className="fa fa-shopping-cart" aria-hidden="true"></i>
-                      <NavDropdown style={{'float':'right','position':'absolute','left':'80%', 'top':'29%', 'font-size':'20px'}} eventKey={3} title="Cart" id="basic-nav-dropdown">                      
+                      <i style={{'position':'absolute','left':'73%','top':'42%','font-size':'20px'}} className="fa fa-shopping-cart" aria-hidden="true"></i>
+                      <NavDropdown style={{'float':'right','position':'absolute','left':'75%', 'top':'29%', 'font-size':'20px'}} eventKey={3} title="Cart" id="basic-nav-dropdown">                      
                             <CardNarv />                            
                       </NavDropdown>   
                     </Nav>
@@ -3908,21 +3908,31 @@ class CardNarv extends React.Component{
             }
         }
 
-        return(            
-                    <Row>
+        return(     
+                    <Row>                        
+                        <Col md={2}></Col>
+                        <Col md={10}>
+                        <h4>
+                            Cart
+                        </h4>                        
+                        </Col>
                         <br/>
                         <Col md={12}>                        
-                        <Table striped bordered hover>                                        
+                        <Table>                                        
                             <tbody>
                             {this.state.orderAPI.map(
                                 (order) =>  <tr>
-                                                <td colSpan="2" style={{'text-align':'center', 'width':'100%','text-decoration':'underline','color':'blue'}}>{order.description}</td>
-                                                <td>${parseInt(order.project).toFixed(2)}</td>
+                                                <td colSpan="3" style={{'text-decoration':'none !important','text-align':'center', 'width':'100%'}}>{order.description}</td>
+                                                <td colSpan="2">qty: {parseInt(order.quantity)}</td>
+                                                <td>US${parseInt(order.project).toFixed(2)}</td>
                                                 <td style={{'color':'red','text-align':'center'}}><i onClick={this.onDelete.bind(this, order.id)} className="fa fa-trash" aria-hidden="true"></i></td>
                                             </tr>
                             )}    
                             
                             <tr>                                                    
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                 <td>Discount:</td>
@@ -3931,19 +3941,25 @@ class CardNarv extends React.Component{
                             <tr>                        
                                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                 <td>Subtotal:</td>
                                 <td>${((sum)-(sum*5/100)).toFixed(2)}</td>                        
                             </tr>
                             <tr>
                                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+                                <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
                                 <td>Total:</td>
                                 <td>${sum.toFixed(2)}</td>                        
                             </tr>
                             <tr>                            
-                                <td colSpan="4" style={{'text-align':'center', 'width':'100%'}}>
-                                    <Button className="btn btn-primary">
-                                        Checkout
+                                <td colSpan="7" style={{'text-align':'center', 'width':'100%'}}>
+                                    <Button style={{'width':'100%'}} className="btn btn-primary">
+                                        Proceed to Checkout &nbsp; <i className="fa fa-arrow-right" aria-hidden="true"></i>
                                     </Button>
                                 </td>                                                  
                                 {/* <td>@twitter</td>                             */}
@@ -4004,7 +4020,6 @@ class Order extends React.Component{
 
         return(
 
-            
                 <Table striped bordered condensed hover>
                                     <thead>
                                         <tr>
@@ -4027,6 +4042,7 @@ class Order extends React.Component{
                 )}
                 </tbody>                                            
                 </Table>
+
             
         );
     }

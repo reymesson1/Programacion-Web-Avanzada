@@ -1341,10 +1341,10 @@ var Toolbar = function (_React$Component9) {
                             )
                         )
                     ),
-                    React.createElement('i', { style: { 'position': 'absolute', 'left': '79%', 'top': '42%', 'font-size': '20px' }, className: 'fa fa-shopping-cart', 'aria-hidden': 'true' }),
+                    React.createElement('i', { style: { 'position': 'absolute', 'left': '73%', 'top': '42%', 'font-size': '20px' }, className: 'fa fa-shopping-cart', 'aria-hidden': 'true' }),
                     React.createElement(
                         NavDropdown,
-                        { style: { 'float': 'right', 'position': 'absolute', 'left': '80%', 'top': '29%', 'font-size': '20px' }, eventKey: 3, title: 'Cart', id: 'basic-nav-dropdown' },
+                        { style: { 'float': 'right', 'position': 'absolute', 'left': '75%', 'top': '29%', 'font-size': '20px' }, eventKey: 3, title: 'Cart', id: 'basic-nav-dropdown' },
                         React.createElement(CardNarv, null)
                     )
                 )
@@ -5702,13 +5702,23 @@ var CardNarv = function (_React$Component51) {
             return React.createElement(
                 Row,
                 null,
+                React.createElement(Col, { md: 2 }),
+                React.createElement(
+                    Col,
+                    { md: 10 },
+                    React.createElement(
+                        'h4',
+                        null,
+                        'Cart'
+                    )
+                ),
                 React.createElement('br', null),
                 React.createElement(
                     Col,
                     { md: 12 },
                     React.createElement(
                         Table,
-                        { striped: true, bordered: true, hover: true },
+                        null,
                         React.createElement(
                             'tbody',
                             null,
@@ -5718,13 +5728,19 @@ var CardNarv = function (_React$Component51) {
                                     null,
                                     React.createElement(
                                         'td',
-                                        { colSpan: '2', style: { 'text-align': 'center', 'width': '100%', 'text-decoration': 'underline', 'color': 'blue' } },
+                                        { colSpan: '3', style: { 'text-decoration': 'none !important', 'text-align': 'center', 'width': '100%' } },
                                         order.description
                                     ),
                                     React.createElement(
                                         'td',
+                                        { colSpan: '2' },
+                                        'qty: ',
+                                        parseInt(order.quantity)
+                                    ),
+                                    React.createElement(
+                                        'td',
                                         null,
-                                        '$',
+                                        'US$',
                                         parseInt(order.project).toFixed(2)
                                     ),
                                     React.createElement(
@@ -5737,6 +5753,21 @@ var CardNarv = function (_React$Component51) {
                             React.createElement(
                                 'tr',
                                 null,
+                                React.createElement(
+                                    'td',
+                                    null,
+                                    '\xA0\xA0\xA0\xA0\xA0\xA0'
+                                ),
+                                React.createElement(
+                                    'td',
+                                    null,
+                                    '\xA0\xA0\xA0\xA0\xA0\xA0'
+                                ),
+                                React.createElement(
+                                    'td',
+                                    null,
+                                    '\xA0\xA0\xA0\xA0\xA0\xA0'
+                                ),
                                 React.createElement(
                                     'td',
                                     null,
@@ -5775,6 +5806,21 @@ var CardNarv = function (_React$Component51) {
                                 React.createElement(
                                     'td',
                                     null,
+                                    '\xA0\xA0\xA0\xA0\xA0\xA0'
+                                ),
+                                React.createElement(
+                                    'td',
+                                    null,
+                                    '\xA0\xA0\xA0\xA0\xA0\xA0'
+                                ),
+                                React.createElement(
+                                    'td',
+                                    null,
+                                    '\xA0\xA0\xA0\xA0\xA0\xA0'
+                                ),
+                                React.createElement(
+                                    'td',
+                                    null,
                                     'Subtotal:'
                                 ),
                                 React.createElement(
@@ -5787,6 +5833,21 @@ var CardNarv = function (_React$Component51) {
                             React.createElement(
                                 'tr',
                                 null,
+                                React.createElement(
+                                    'td',
+                                    null,
+                                    '\xA0\xA0\xA0\xA0\xA0\xA0'
+                                ),
+                                React.createElement(
+                                    'td',
+                                    null,
+                                    '\xA0\xA0\xA0\xA0\xA0\xA0'
+                                ),
+                                React.createElement(
+                                    'td',
+                                    null,
+                                    '\xA0\xA0\xA0\xA0\xA0\xA0'
+                                ),
                                 React.createElement(
                                     'td',
                                     null,
@@ -5814,11 +5875,12 @@ var CardNarv = function (_React$Component51) {
                                 null,
                                 React.createElement(
                                     'td',
-                                    { colSpan: '4', style: { 'text-align': 'center', 'width': '100%' } },
+                                    { colSpan: '7', style: { 'text-align': 'center', 'width': '100%' } },
                                     React.createElement(
                                         Button,
-                                        { className: 'btn btn-primary' },
-                                        'Checkout'
+                                        { style: { 'width': '100%' }, className: 'btn btn-primary' },
+                                        'Proceed to Checkout \xA0 ',
+                                        React.createElement('i', { className: 'fa fa-arrow-right', 'aria-hidden': 'true' })
                                     )
                                 )
                             )
