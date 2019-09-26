@@ -3898,6 +3898,29 @@ class CardNarv extends React.Component{
         })
     }
 
+    checkout(value){
+
+        let newItem = {
+
+            "id": value
+        }
+
+        fetch('https://6fe0ukszz2.execute-api.us-east-1.amazonaws.com/live/setcheckout',{headers: API_HEADERS})
+        .then((response)=>response.json())
+        .then((responseData)=>{
+            this.setState({
+  
+                orderAPI: responseData
+            })
+        })
+        .catch((error)=>{
+            console.log('Error fetching and parsing data', error);
+        })
+        
+    }
+
+
+
     render(){
 
         let sum = 0;
@@ -3958,7 +3981,7 @@ class CardNarv extends React.Component{
                             </tr>
                             <tr>                            
                                 <td colSpan="7" style={{'text-align':'center', 'width':'100%'}}>
-                                    <Button style={{'width':'100%'}} variant="outline-success">
+                                    <Button onClick={this.checkout.bind(this,"hello")} style={{'width':'100%'}} variant="outline-success">
                                         Proceed to Checkout &nbsp; <i className="fa fa-arrow-right" aria-hidden="true"></i>
                                     </Button>
                                 </td>                                                  

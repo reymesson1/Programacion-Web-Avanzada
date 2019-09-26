@@ -5687,9 +5687,30 @@ var CardNarv = function (_React$Component51) {
             });
         }
     }, {
+        key: 'checkout',
+        value: function checkout(value) {
+            var _this73 = this;
+
+            var newItem = {
+
+                "id": value
+            };
+
+            fetch('https://6fe0ukszz2.execute-api.us-east-1.amazonaws.com/live/setcheckout', { headers: API_HEADERS }).then(function (response) {
+                return response.json();
+            }).then(function (responseData) {
+                _this73.setState({
+
+                    orderAPI: responseData
+                });
+            }).catch(function (error) {
+                console.log('Error fetching and parsing data', error);
+            });
+        }
+    }, {
         key: 'render',
         value: function render() {
-            var _this73 = this;
+            var _this74 = this;
 
             var sum = 0;
 
@@ -5746,7 +5767,7 @@ var CardNarv = function (_React$Component51) {
                                     React.createElement(
                                         'td',
                                         { style: { 'text-align': 'center', 'font-size': '18px' } },
-                                        React.createElement('i', { onClick: _this73.onDelete.bind(_this73, order.id), className: 'fa fa-trash', 'aria-hidden': 'true' })
+                                        React.createElement('i', { onClick: _this74.onDelete.bind(_this74, order.id), className: 'fa fa-trash', 'aria-hidden': 'true' })
                                     )
                                 );
                             }),
@@ -5878,7 +5899,7 @@ var CardNarv = function (_React$Component51) {
                                     { colSpan: '7', style: { 'text-align': 'center', 'width': '100%' } },
                                     React.createElement(
                                         Button,
-                                        { style: { 'width': '100%' }, variant: 'outline-success' },
+                                        { onClick: this.checkout.bind(this, "hello"), style: { 'width': '100%' }, variant: 'outline-success' },
                                         'Proceed to Checkout \xA0 ',
                                         React.createElement('i', { className: 'fa fa-arrow-right', 'aria-hidden': 'true' })
                                     )
@@ -5900,19 +5921,19 @@ var Order = function (_React$Component52) {
     function Order() {
         _classCallCheck(this, Order);
 
-        var _this74 = _possibleConstructorReturn(this, (Order.__proto__ || Object.getPrototypeOf(Order)).call(this));
+        var _this75 = _possibleConstructorReturn(this, (Order.__proto__ || Object.getPrototypeOf(Order)).call(this));
 
-        _this74.state = {
+        _this75.state = {
 
             orderAPI: []
         };
-        return _this74;
+        return _this75;
     }
 
     _createClass(Order, [{
         key: 'componentDidMount',
         value: function componentDidMount() {
-            var _this75 = this;
+            var _this76 = this;
 
             // fetch(API_URL+'/orders/'+token(),{headers: API_HEADERS})
             // .then((response)=>response.json())
@@ -5934,7 +5955,7 @@ var Order = function (_React$Component52) {
             }).then(function (response) {
                 return response.json();
             }).then(function (responseData) {
-                _this75.setState({
+                _this76.setState({
 
                     orderAPI: responseData
                 });
