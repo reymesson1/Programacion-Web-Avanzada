@@ -1341,7 +1341,7 @@ var Toolbar = function (_React$Component9) {
                             )
                         )
                     ),
-                    React.createElement('i', { style: { 'position': 'absolute', 'left': '73%', 'top': '42%', 'font-size': '20px' }, className: 'fa fa-shopping-cart', 'aria-hidden': 'true' }),
+                    React.createElement('i', { style: { 'position': 'absolute', 'left': '74%', 'top': '42%', 'font-size': '20px' }, className: 'fa fa-shopping-cart', 'aria-hidden': 'true' }),
                     React.createElement(
                         NavDropdown,
                         { style: { 'float': 'right', 'position': 'absolute', 'left': '75%', 'top': '29%', 'font-size': '20px' }, eventKey: 3, title: 'Cart', id: 'basic-nav-dropdown' },

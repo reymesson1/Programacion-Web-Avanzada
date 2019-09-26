@@ -864,7 +864,7 @@ class Toolbar extends React.Component{
                             <Button style={{'margin-top':'10px'}} variant="outline-success"><i className="fa fa-search" aria-hidden="true"></i></Button>
                       </Form>
                       </li>
-                      <i style={{'position':'absolute','left':'73%','top':'42%','font-size':'20px'}} className="fa fa-shopping-cart" aria-hidden="true"></i>
+                      <i style={{'position':'absolute','left':'74%','top':'42%','font-size':'20px'}} className="fa fa-shopping-cart" aria-hidden="true"></i>
                       <NavDropdown style={{'float':'right','position':'absolute','left':'75%', 'top':'29%', 'font-size':'20px'}} eventKey={3} title="Cart" id="basic-nav-dropdown">                      
                             <CardNarv />                            
                       </NavDropdown>   
