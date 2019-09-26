@@ -1694,11 +1694,12 @@ var Master = function (_React$Component12) {
                 "quantity": "1",
                 "project": filteredData[0].project,
                 "description": filteredData[0].name
+            };
 
-                // console.log(newItem)
+            console.log(newItem);
 
-                // fetch(API_URL+'/addorder', {
-            };fetch('https://on3eon5uoh.execute-api.us-east-1.amazonaws.com/live/addorder', {
+            // fetch(API_URL+'/addorder', {
+            fetch('https://on3eon5uoh.execute-api.us-east-1.amazonaws.com/live/addorder', {
 
                 method: 'post',
                 headers: API_HEADERS,
@@ -2059,7 +2060,7 @@ var MasterTable = function (_React$Component15) {
             var rows = [];
 
             var items = this.props.masterData.filter(function (master) {
-                return master.name.indexOf(_this20.props.searchText) !== -1;
+                return master.name.toLowerCase().indexOf(_this20.props.searchText.toLowerCase()) !== -1;
             });
 
             for (var i = 0; i < items.length; i++) {

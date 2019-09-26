@@ -1186,7 +1186,7 @@ class Master extends React.Component{
             "description": filteredData[0].name
         }
 
-        // console.log(newItem)
+        console.log(newItem)
 
         // fetch(API_URL+'/addorder', {
         fetch('https://on3eon5uoh.execute-api.us-east-1.amazonaws.com/live/addorder', {
@@ -1499,7 +1499,7 @@ class MasterTable extends React.Component{
         var rows = []        
 
         let items = this.props.masterData.filter(
-            (master) => master.name.indexOf(this.props.searchText) !== -1
+            (master) => master.name.toLowerCase().indexOf(this.props.searchText.toLowerCase()) !== -1
         )
 
         for(var i=0;i<items.length;i++){
