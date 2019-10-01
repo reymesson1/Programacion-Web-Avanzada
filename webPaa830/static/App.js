@@ -208,9 +208,7 @@ var App = function (_React$Component) {
                 React.createElement(
                     'div',
                     { className: 'container' },
-                    React.createElement(Master, {
-                        searchText: this.state.searchText
-                    })
+                    this.props.children
                 )
             );
 
@@ -1841,9 +1839,9 @@ var Master = function (_React$Component12) {
                 React.createElement(
                     Row,
                     null,
-                    React.createElement(MasterTable, {
-                        searchText: this.props.searchText,
-                        showModal: this.state.showModal,
+                    React.createElement(MasterTable
+                    // searchText={this.props.searchText}
+                    , { showModal: this.state.showModal,
                         open: this.open.bind(this),
                         close: this.close.bind(this),
                         filterText: this.state.filterText,
@@ -2059,9 +2057,10 @@ var MasterTable = function (_React$Component15) {
 
             var rows = [];
 
-            var items = this.props.masterData.filter(function (master) {
-                return master.name.toLowerCase().indexOf(_this20.props.searchText.toLowerCase()) !== -1;
-            });
+            var items = this.props.masterData;
+            // let items = this.props.masterData.filter(            
+            // (master) => master.name.toLowerCase().indexOf(this.props.searchText.toLowerCase()) !== -1
+            //)
 
             for (var i = 0; i < items.length; i++) {
 
@@ -5935,6 +5934,24 @@ var CardNarv = function (_React$Component51) {
                                         React.createElement('i', { className: 'fa fa-arrow-right', 'aria-hidden': 'true' })
                                     )
                                 )
+                            ),
+                            React.createElement(
+                                'tr',
+                                null,
+                                React.createElement(
+                                    'td',
+                                    { colSpan: '7', style: { 'text-align': 'center', 'width': '100%' } },
+                                    React.createElement(
+                                        Link,
+                                        { to: '/upload' },
+                                        React.createElement(
+                                            Button,
+                                            { style: { 'width': '100%' }, variant: 'outline-success' },
+                                            'Upload \xA0 ',
+                                            React.createElement('i', { className: 'fa fa-arrow-up', 'aria-hidden': 'true' })
+                                        )
+                                    )
+                                )
                             )
                         )
                     )
@@ -6066,6 +6083,263 @@ var Order = function (_React$Component52) {
     return Order;
 }(React.Component);
 
+var Upload = function (_React$Component53) {
+    _inherits(Upload, _React$Component53);
+
+    function Upload() {
+        _classCallCheck(this, Upload);
+
+        var _this77 = _possibleConstructorReturn(this, (Upload.__proto__ || Object.getPrototypeOf(Upload)).call(this));
+
+        _this77.state = {
+
+            orderAPI: [],
+            showModal: false
+        };
+        return _this77;
+    }
+
+    _createClass(Upload, [{
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            var _this78 = this;
+
+            // fetch(API_URL+'/orders/'+token(),{headers: API_HEADERS})
+            // .then((response)=>response.json())
+            // .then((responseData)=>{
+            //     this.setState({
+
+            //         orderAPI: responseData
+            //     })
+            // })
+            var newItem = {
+
+                "user": token()
+            };
+            fetch(API_URL + '/orders', {
+
+                method: 'post',
+                headers: API_HEADERS,
+                body: JSON.stringify(newItem)
+            }).then(function (response) {
+                return response.json();
+            }).then(function (responseData) {
+                _this78.setState({
+
+                    orderAPI: responseData
+                });
+            }).catch(function (error) {
+                console.log('Error fetching and parsing data', error);
+            });
+        }
+    }, {
+        key: 'onClose',
+        value: function onClose() {
+            this.setState({
+
+                showModal: false
+            });
+        }
+    }, {
+        key: 'onOpen',
+        value: function onOpen() {
+
+            this.setState({
+
+                showModal: true
+            });
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+
+            return React.createElement(
+                Grid,
+                null,
+                React.createElement(
+                    Row,
+                    null,
+                    React.createElement(
+                        'h1',
+                        { style: { 'color': '#cd6607' } },
+                        'Send/replenish Inventory'
+                    )
+                ),
+                React.createElement(
+                    Row,
+                    null,
+                    React.createElement(
+                        Button,
+                        { className: 'pull-right', onClick: this.onOpen.bind(this), variant: 'outline-success' },
+                        'Upload \xA0 ',
+                        React.createElement('i', { className: 'fa fa-arrow-up', 'aria-hidden': 'true' })
+                    ),
+                    React.createElement(
+                        Modal,
+                        { show: this.state.showModal, onHide: this.onClose.bind(this) },
+                        React.createElement(
+                            Modal.Header,
+                            { closeButton: true },
+                            React.createElement(
+                                Modal.Title,
+                                null,
+                                'Modal heading'
+                            )
+                        ),
+                        React.createElement(
+                            Modal.Body,
+                            null,
+                            React.createElement(
+                                Form,
+                                null,
+                                React.createElement(
+                                    Row,
+                                    null,
+                                    React.createElement(
+                                        FormGroup,
+                                        null,
+                                        React.createElement(
+                                            Col,
+                                            { componentClass: ControlLabel, md: 4, sm: 2 },
+                                            'Description'
+                                        ),
+                                        React.createElement(
+                                            Col,
+                                            { md: 8, sm: 6 },
+                                            React.createElement(FormControl, { type: 'text', name: 'description', placeholder: 'Description', disabled: true })
+                                        )
+                                    )
+                                ),
+                                React.createElement('br', null),
+                                React.createElement(
+                                    Row,
+                                    null,
+                                    React.createElement(
+                                        FormGroup,
+                                        null,
+                                        React.createElement(
+                                            Col,
+                                            { componentClass: ControlLabel, md: 4, sm: 2 },
+                                            'Price'
+                                        ),
+                                        React.createElement(
+                                            Col,
+                                            { md: 8, sm: 6 },
+                                            React.createElement(FormControl, { type: 'text', name: 'price', placeholder: 'Price', disabled: true })
+                                        )
+                                    )
+                                ),
+                                React.createElement('br', null),
+                                React.createElement(
+                                    Row,
+                                    null,
+                                    React.createElement(
+                                        FormGroup,
+                                        null,
+                                        React.createElement(
+                                            Col,
+                                            { componentClass: ControlLabel, md: 4, sm: 2 },
+                                            'Image'
+                                        ),
+                                        React.createElement(
+                                            Col,
+                                            { md: 8, sm: 6 },
+                                            React.createElement('input', { type: 'file', name: 'quantity', placeholder: 'Quantity', required: true })
+                                        )
+                                    )
+                                ),
+                                React.createElement('br', null),
+                                React.createElement(
+                                    Row,
+                                    null,
+                                    React.createElement(
+                                        Col,
+                                        { className: 'col-md-offset-10' },
+                                        React.createElement(
+                                            Button,
+                                            { type: 'submit' },
+                                            'Save'
+                                        )
+                                    )
+                                )
+                            )
+                        )
+                    )
+                ),
+                React.createElement('br', null),
+                React.createElement(
+                    Row,
+                    null,
+                    React.createElement(
+                        Table,
+                        { striped: true, bordered: true, condensed: true, hover: true },
+                        React.createElement(
+                            'thead',
+                            null,
+                            React.createElement(
+                                'tr',
+                                null,
+                                React.createElement(
+                                    'td',
+                                    null,
+                                    'Username'
+                                ),
+                                React.createElement(
+                                    'td',
+                                    null,
+                                    'Status'
+                                ),
+                                React.createElement(
+                                    'td',
+                                    null,
+                                    'Quantity'
+                                ),
+                                React.createElement(
+                                    'td',
+                                    null,
+                                    'Address'
+                                )
+                            )
+                        ),
+                        React.createElement(
+                            'tbody',
+                            null,
+                            this.state.orderAPI.map(function (order) {
+                                return React.createElement(
+                                    'tr',
+                                    null,
+                                    React.createElement(
+                                        'td',
+                                        null,
+                                        order.username
+                                    ),
+                                    React.createElement(
+                                        'td',
+                                        null,
+                                        'Pending'
+                                    ),
+                                    React.createElement(
+                                        'td',
+                                        null,
+                                        order.quantity
+                                    ),
+                                    React.createElement(
+                                        'td',
+                                        null,
+                                        order.address
+                                    )
+                                );
+                            })
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return Upload;
+}(React.Component);
+
 ReactDOM.render(React.createElement(
     Router,
     { history: browserHistory },
@@ -6076,6 +6350,7 @@ ReactDOM.render(React.createElement(
         React.createElement(Route, { path: 'login', component: Login }),
         React.createElement(Route, { path: 'registration', component: Registration }),
         React.createElement(Route, { path: 'order', component: Order }),
+        React.createElement(Route, { path: 'upload', component: Upload }),
         React.createElement(Route, { path: 'profile/:userid', component: Profile }),
         React.createElement(Route, { path: 'account', component: Account }),
         React.createElement(Route, { path: 'agregar_tiposervicio', component: AgregarPeluquera }),

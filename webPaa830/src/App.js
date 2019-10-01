@@ -199,10 +199,10 @@ class App extends React.Component{
                 searchCallback={this.onSearch.bind(this)}
              />
             <div className="container">
-                {/* {this.props.children} */}
-                <Master                    
+                {this.props.children}
+                {/* <Master                    
                     searchText={this.state.searchText}
-                />
+                /> */}
             </div>
           </div>
 
@@ -1341,7 +1341,7 @@ onsavemaster:this.onSaveMaster.bind(this)
                 <Row>
             
                         <MasterTable
-                                        searchText={this.props.searchText}
+                                        // searchText={this.props.searchText}
                                         showModal={this.state.showModal}
                                         open={this.open.bind(this)}
                                         close={this.close.bind(this)}
@@ -1498,9 +1498,10 @@ class MasterTable extends React.Component{
 
         var rows = []        
 
-        let items = this.props.masterData.filter(
-            (master) => master.name.toLowerCase().indexOf(this.props.searchText.toLowerCase()) !== -1
-        )
+        let items = this.props.masterData
+        // let items = this.props.masterData.filter(            
+            // (master) => master.name.toLowerCase().indexOf(this.props.searchText.toLowerCase()) !== -1
+        //)
 
         for(var i=0;i<items.length;i++){
             
@@ -4020,6 +4021,16 @@ class CardNarv extends React.Component{
                                 </td>                                                  
                                 {/* <td>@twitter</td>                             */}
                             </tr>
+                            <tr>                            
+                                <td colSpan="7" style={{'text-align':'center', 'width':'100%'}}>
+                                    <Link to={'/upload'}>
+                                    <Button style={{'width':'100%'}} variant="outline-success">
+                                        Upload &nbsp; <i className="fa fa-arrow-up" aria-hidden="true"></i>
+                                    </Button>
+                                    </Link>                                    
+                                </td>                                                  
+                                {/* <td>@twitter</td>                             */}
+                            </tr>
                             </tbody>
                         </Table>                    
                     </Col>
@@ -4105,6 +4116,163 @@ class Order extends React.Component{
 
 }
 
+class Upload extends React.Component{
+
+    constructor(){
+        
+        super();
+        this.state = {
+
+            orderAPI: [],
+            showModal: false
+        }
+    }
+
+    componentDidMount(){
+
+        // fetch(API_URL+'/orders/'+token(),{headers: API_HEADERS})
+        // .then((response)=>response.json())
+        // .then((responseData)=>{
+        //     this.setState({
+    
+        //         orderAPI: responseData
+        //     })
+        // })
+        let newItem = {
+
+            "user" : token()
+        }
+        fetch(API_URL+'/orders', {
+            
+            method: 'post',
+            headers: API_HEADERS,
+            body: JSON.stringify(newItem)
+        })
+        .then((response)=>response.json())
+        .then((responseData)=>{
+            this.setState({
+    
+                orderAPI: responseData
+            })
+        })
+        .catch((error)=>{
+            console.log('Error fetching and parsing data', error);
+        })
+    }
+
+    onClose(){
+        this.setState({
+
+            showModal: false
+        })
+    }
+
+    onOpen(){
+
+        this.setState({
+            
+            showModal: true
+        })
+
+
+    }
+    
+    render(){
+
+        return(
+
+            <Grid>
+                <Row>
+                    <h1 style={{'color':'#cd6607'}}>Send/replenish Inventory</h1>
+                </Row>
+                <Row>
+                <Button className="pull-right" onClick={this.onOpen.bind(this)} variant="outline-success">Upload &nbsp; <i className="fa fa-arrow-up" aria-hidden="true"></i></Button>
+                {/* <input type="file" className="pull-right" variant="outline-success"/>Upload &nbsp; <i className="fa fa-arrow-up" aria-hidden="true"></i>                 */}
+
+                <Modal show={this.state.showModal} onHide={this.onClose.bind(this)}>
+                    <Modal.Header closeButton>
+                        <Modal.Title>Modal heading</Modal.Title>
+                    </Modal.Header>
+                    <Modal.Body>                                                                                                                                
+                            {/* <Form onSubmit={this.onsavedetail.bind(this)}>     */}
+                            <Form >    
+                            <Row>      
+                                <FormGroup>
+                                        <Col componentClass={ControlLabel} md={4} sm={2}>
+                                            Description
+                                        </Col>                              
+                                        <Col md={8} sm={6}>
+                                            <FormControl type="text" name="description" placeholder="Description" disabled />
+                                        </Col>
+                                    </FormGroup>
+                                </Row>
+                                <br/>                                                                
+                                <Row>                                                                            
+                                    <FormGroup>
+                                        <Col componentClass={ControlLabel} md={4} sm={2}>
+                                            Price
+                                        </Col>                              
+                                        <Col md={8} sm={6}>
+                                            <FormControl type="text" name="price" placeholder="Price" disabled />
+                                        </Col>
+                                    </FormGroup>
+                                </Row>    
+                                <br/>
+                                <Row>    
+                                    <FormGroup>
+                                        <Col componentClass={ControlLabel} md={4} sm={2}>
+                                            Image
+                                        </Col>                              
+                                        <Col md={8} sm={6}>
+                                            <input type="file" name="quantity" placeholder="Quantity" required />
+                                        </Col>
+                                    </FormGroup>
+                                </Row>
+                                <br/>                                                                                           
+                                <Row>                                                                            
+                                    <Col className="col-md-offset-10">
+                                        <Button type="submit" >Save</Button>
+                                    </Col>
+                                </Row>
+                            </Form>
+                    </Modal.Body>
+                </Modal>
+
+
+                </Row>
+                
+                <br/>
+                <Row>                
+                    <Table striped bordered condensed hover>
+                    <thead>
+                        <tr>
+                            <td>Username</td>
+                            <td>Status</td>
+                            <td>Quantity</td>
+                            <td>Address</td>
+                        </tr>
+                    </thead>
+                    <tbody>                                            
+                    {this.state.orderAPI.map(
+                    (order) =>
+                            
+                                    <tr>
+                                        <td>{order.username}</td>
+                                        <td>{'Pending'}</td>
+                                        <td>{order.quantity}</td>
+                                        <td>{order.address}</td>
+                                    </tr>
+                    )}
+                    </tbody>                                            
+                    </Table>
+                </Row>
+            </Grid>
+            
+        );
+    }
+
+}
+
 
 
 ReactDOM.render((
@@ -4115,6 +4283,7 @@ ReactDOM.render((
         <Route path="login" component={Login}/>
         <Route path="registration" component={Registration}/>
         <Route path="order" component={Order}/>
+        <Route path="upload" component={Upload}/>
         <Route path="profile/:userid" component={Profile}/>
         <Route path="account" component={Account}/>
         <Route path="agregar_tiposervicio" component={AgregarPeluquera}/>
