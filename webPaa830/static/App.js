@@ -6150,6 +6150,32 @@ var Upload = function (_React$Component53) {
             });
         }
     }, {
+        key: 'onsavedetail',
+        value: function onsavedetail(event) {
+
+            event.preventDefault();
+
+            var newFile = {
+
+                "url": "c:/fakepath/",
+                "nameImage": "finding-an-amazon-reference-id-1024x449.png"
+
+            };
+
+            fetch(API_URL + '/masterpicture', {
+
+                method: 'post',
+                headers: API_HEADERS,
+                body: JSON.stringify(newFile)
+            }).then(function (response) {
+                return response.json();
+            }).then(function (response) {
+                console.log(response);
+            });
+
+            console.log(event.target.fileToUpload.value);
+        }
+    }, {
         key: 'render',
         value: function render() {
 
@@ -6191,7 +6217,7 @@ var Upload = function (_React$Component53) {
                             null,
                             React.createElement(
                                 Form,
-                                null,
+                                { onSubmit: this.onsavedetail.bind(this) },
                                 React.createElement(
                                     Row,
                                     null,
@@ -6244,7 +6270,7 @@ var Upload = function (_React$Component53) {
                                         React.createElement(
                                             Col,
                                             { md: 8, sm: 6 },
-                                            React.createElement('input', { type: 'file', name: 'quantity', placeholder: 'Quantity', required: true })
+                                            React.createElement('input', { type: 'file', name: 'fileToUpload', placeholder: 'Quantity', required: true })
                                         )
                                     )
                                 ),

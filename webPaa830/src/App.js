@@ -4176,6 +4176,29 @@ class Upload extends React.Component{
 
 
     }
+
+    onsavedetail(event){
+        
+        event.preventDefault();
+
+        let newFile = {
+
+            "url": "c:/fakepath/",
+            "nameImage": "finding-an-amazon-reference-id-1024x449.png"
+
+        }
+
+        fetch(API_URL+'/masterpicture', {
+            
+            method: 'post',
+            headers: API_HEADERS,
+            body: JSON.stringify(newFile)
+        }).then(response => response.json()).then(response => {
+            console.log(response);
+        }); 
+
+        console.log(event.target.fileToUpload.value)
+    }
     
     render(){
 
@@ -4194,8 +4217,8 @@ class Upload extends React.Component{
                         <Modal.Title>Modal heading</Modal.Title>
                     </Modal.Header>
                     <Modal.Body>                                                                                                                                
-                            {/* <Form onSubmit={this.onsavedetail.bind(this)}>     */}
-                            <Form >    
+                            <Form onSubmit={this.onsavedetail.bind(this)}>    
+                            {/* <Form >     */}
                             <Row>      
                                 <FormGroup>
                                         <Col componentClass={ControlLabel} md={4} sm={2}>
@@ -4224,7 +4247,7 @@ class Upload extends React.Component{
                                             Image
                                         </Col>                              
                                         <Col md={8} sm={6}>
-                                            <input type="file" name="quantity" placeholder="Quantity" required />
+                                            <input type="file" name="fileToUpload" placeholder="Quantity" required />
                                         </Col>
                                     </FormGroup>
                                 </Row>
