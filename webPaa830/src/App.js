@@ -4124,7 +4124,8 @@ class Upload extends React.Component{
         this.state = {
 
             orderAPI: [],
-            showModal: false
+            showModal: false,
+            files: []            
         }
     }
 
@@ -4142,16 +4143,27 @@ class Upload extends React.Component{
 
             "user" : token()
         }
-        fetch(API_URL+'/orders', {
+        // fetch(API_URL+'/orders', {        
             
-            method: 'post',
-            headers: API_HEADERS,
-            body: JSON.stringify(newItem)
-        })
+        //     method: 'post',
+        //     headers: API_HEADERS,
+        //     body: JSON.stringify(newItem)
+        // })
+        // .then((response)=>response.json())
+        // .then((responseData)=>{
+        //     this.setState({
+    
+        //         orderAPI: responseData
+        //     })
+        // })
+        // .catch((error)=>{
+        //     console.log('Error fetching and parsing data', error);
+        // })
+        fetch('https://on3eon5uoh.execute-api.us-east-1.amazonaws.com/live/-orders',{headers: API_HEADERS})
         .then((response)=>response.json())
         .then((responseData)=>{
             this.setState({
-    
+  
                 orderAPI: responseData
             })
         })
@@ -4199,6 +4211,37 @@ class Upload extends React.Component{
 
         console.log(event.target.fileToUpload.value)
     }
+
+    fileSelectedHandler(e){
+
+        // console.log(e.target.files)
+        var files = e.target.files
+        for(let x=0,num=1000;x<files.length;x++,num+=3000){      
+          setTimeout(() => {         
+            if (files && files[x]) {
+                console.log(files[x])
+                // this.nameImage.push(this.files[x].name);          
+                var reader = new FileReader();
+                reader.readAsDataURL(files[x]);
+                reader.onload = function(e) {
+                  // The file's text will be printed here
+                  let target = event.target;
+                  let content = target.result;          
+                  console.log(content)
+                };
+              
+                //reader.readAsText(files[x]);
+                // this.reader.readAsDataURL(this.files[x]);
+                // this.reader.onload = (event) => {           
+                //     let target = event.target;
+                //     let content = target.result;          
+                //     this.url.push(content); 
+                //   }
+            }                
+          }, num);
+        }    
+
+    }
     
     render(){
 
@@ -4206,6 +4249,7 @@ class Upload extends React.Component{
 
             <Grid>
                 <Row>
+                    
                     <h1 style={{'color':'#cd6607'}}>Send/replenish Inventory</h1>
                 </Row>
                 <Row>
@@ -4247,7 +4291,8 @@ class Upload extends React.Component{
                                             Image
                                         </Col>                              
                                         <Col md={8} sm={6}>
-                                            <input type="file" name="fileToUpload" placeholder="Quantity" required />
+                                            {/* <input type="file" name="fileToUpload" placeholder="Quantity" required /> */}
+                                            <input type="file" multiple onChange={this.fileSelectedHandler} />
                                         </Col>
                                     </FormGroup>
                                 </Row>
@@ -4280,7 +4325,8 @@ class Upload extends React.Component{
                     (order) =>
                             
                                     <tr>
-                                        <td>{order.username}</td>
+                                        {/* <td>{order.description}</td> */}
+                                        <td><div dangerouslySetInnerHTML={{ __html: order.description }} /></td>
                                         <td>{'Pending'}</td>
                                         <td>{order.quantity}</td>
                                         <td>{order.address}</td>

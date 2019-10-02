@@ -6094,7 +6094,8 @@ var Upload = function (_React$Component53) {
         _this77.state = {
 
             orderAPI: [],
-            showModal: false
+            showModal: false,
+            files: []
         };
         return _this77;
     }
@@ -6115,13 +6116,23 @@ var Upload = function (_React$Component53) {
             var newItem = {
 
                 "user": token()
-            };
-            fetch(API_URL + '/orders', {
+                // fetch(API_URL+'/orders', {        
 
-                method: 'post',
-                headers: API_HEADERS,
-                body: JSON.stringify(newItem)
-            }).then(function (response) {
+                //     method: 'post',
+                //     headers: API_HEADERS,
+                //     body: JSON.stringify(newItem)
+                // })
+                // .then((response)=>response.json())
+                // .then((responseData)=>{
+                //     this.setState({
+
+                //         orderAPI: responseData
+                //     })
+                // })
+                // .catch((error)=>{
+                //     console.log('Error fetching and parsing data', error);
+                // })
+            };fetch('https://on3eon5uoh.execute-api.us-east-1.amazonaws.com/live/-orders', { headers: API_HEADERS }).then(function (response) {
                 return response.json();
             }).then(function (responseData) {
                 _this78.setState({
@@ -6174,6 +6185,42 @@ var Upload = function (_React$Component53) {
             });
 
             console.log(event.target.fileToUpload.value);
+        }
+    }, {
+        key: 'fileSelectedHandler',
+        value: function fileSelectedHandler(e) {
+
+            // console.log(e.target.files)
+            var files = e.target.files;
+
+            var _loop = function _loop(x, num) {
+                setTimeout(function () {
+                    if (files && files[x]) {
+                        console.log(files[x]);
+                        // this.nameImage.push(this.files[x].name);          
+                        var reader = new FileReader();
+                        reader.readAsDataURL(files[x]);
+                        reader.onload = function (e) {
+                            // The file's text will be printed here
+                            var target = event.target;
+                            var content = target.result;
+                            console.log(content);
+                        };
+
+                        //reader.readAsText(files[x]);
+                        // this.reader.readAsDataURL(this.files[x]);
+                        // this.reader.onload = (event) => {           
+                        //     let target = event.target;
+                        //     let content = target.result;          
+                        //     this.url.push(content); 
+                        //   }
+                    }
+                }, num);
+            };
+
+            for (var x = 0, num = 1000; x < files.length; x++, num += 3000) {
+                _loop(x, num);
+            }
         }
     }, {
         key: 'render',
@@ -6270,7 +6317,7 @@ var Upload = function (_React$Component53) {
                                         React.createElement(
                                             Col,
                                             { md: 8, sm: 6 },
-                                            React.createElement('input', { type: 'file', name: 'fileToUpload', placeholder: 'Quantity', required: true })
+                                            React.createElement('input', { type: 'file', multiple: true, onChange: this.fileSelectedHandler })
                                         )
                                     )
                                 ),
@@ -6337,7 +6384,7 @@ var Upload = function (_React$Component53) {
                                     React.createElement(
                                         'td',
                                         null,
-                                        order.username
+                                        React.createElement('div', { dangerouslySetInnerHTML: { __html: order.description } })
                                     ),
                                     React.createElement(
                                         'td',
