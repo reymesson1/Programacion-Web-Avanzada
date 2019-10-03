@@ -4125,7 +4125,9 @@ class Upload extends React.Component{
 
             orderAPI: [],
             showModal: false,
-            files: []            
+            files: [],
+            image: {},
+            url: []        
         }
     }
 
@@ -4193,53 +4195,99 @@ class Upload extends React.Component{
         
         event.preventDefault();
 
-        let newFile = {
-
-            "url": "c:/fakepath/",
-            "nameImage": "finding-an-amazon-reference-id-1024x449.png"
-
+        let newItem = {
+            
+            "id": Date.now(),
+            "username" : token(),
+            "quantity" : "1",
+            "project" : "123",
+            "description": "description",
+            "imageObj": this.state.url
         }
 
-        fetch(API_URL+'/masterpicture', {
+        console.log(newItem)
+
+        // fetch(API_URL+'/addorder', {
+        fetch('https://on3eon5uoh.execute-api.us-east-1.amazonaws.com/live/addorder', {
             
             method: 'post',
             headers: API_HEADERS,
-            body: JSON.stringify(newFile)
-        }).then(response => response.json()).then(response => {
-            console.log(response);
-        }); 
+            body: JSON.stringify(newItem)
+        }) 
+        fetch('/masterpicture', {
+            
+            method: 'post',
+            headers: API_HEADERS,
+            body: JSON.stringify(newItem)
+        }) 
 
-        console.log(event.target.fileToUpload.value)
+        this.setState({
+            showModal: false
+        })
+
+        //console.log(event.target.fileToUpload.value)
     }
 
     fileSelectedHandler(e){
 
         // console.log(e.target.files)
         var files = e.target.files
+        let content
+        let newItem = {}
+        
         for(let x=0,num=1000;x<files.length;x++,num+=3000){      
           setTimeout(() => {         
             if (files && files[x]) {
-                console.log(files[x])
+                //console.log(files[x])
                 // this.nameImage.push(this.files[x].name);          
                 var reader = new FileReader();
                 reader.readAsDataURL(files[x]);
                 reader.onload = function(e) {
                   // The file's text will be printed here
                   let target = event.target;
-                  let content = target.result;          
-                  console.log(content)
+                  content = target.result;   
+                  
+                  newItem = {
+                      
+                      "id": Date.now(),
+                      "username" : token(),
+                      "quantity" : "1",
+                      "project" : "123",
+                      "description": "description",
+                      "image": content
+                  }                  
                 };
-              
-                //reader.readAsText(files[x]);
-                // this.reader.readAsDataURL(this.files[x]);
-                // this.reader.onload = (event) => {           
-                //     let target = event.target;
-                //     let content = target.result;          
-                //     this.url.push(content); 
-                //   }
-            }                
+
+                setTimeout(() => {
+
+                    
+                    fetch('/masterpicture', {                    
+                        
+                        method: 'post',
+                        headers: API_HEADERS,
+                        body: JSON.stringify(newItem)
+                    }) 
+                    fetch('https://on3eon5uoh.execute-api.us-east-1.amazonaws.com/live/addorder', {
+                        
+                        method: 'post',
+                        headers: API_HEADERS,
+                        body: JSON.stringify(newItem)
+                    }) 
+                }, 5000);
+                
+
+                
+
+                // this.setState({
+                //     image: newItem
+                // })                
+            }
+
           }, num);
-        }    
+         
+        }
+        
+        
 
     }
     

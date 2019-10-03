@@ -224,17 +224,19 @@ app.post('/removeorder', orderController.removeOrder)
 app.post('/newcomment', masterController.setMasterComment)
 
 app.post('/masterpicture', async (req, res)=>{  
+
+    console.log(req.body)
   
-    var fs = require('fs');    
-    var string = req.body.url
-    var nameImage = req.body.nameImage    
-    var regex = /^data:.+\/(.+);base64,(.*)$/;
+    // var fs = require('fs');    
+    // var string = req.body.url
+    // var nameImage = req.body.nameImage    
+    // var regex = /^data:.+\/(.+);base64,(.*)$/;
     
-    var matches = string.match(regex);
-    var ext = matches[1];
-    var data = matches[2];
-    var buffer = new Buffer(data, 'base64');
-    console.log(buffer)
+    // var matches = string.match(regex);
+    // var ext = matches[1];
+    // var data = matches[2];
+    // var buffer = new Buffer(data, 'base64');
+    // console.log(buffer)
     // var dir = './src/assets/'+master.fullname+'/';
     // if (!fs.existsSync(dir)){
     //   fs.mkdirSync(dir);

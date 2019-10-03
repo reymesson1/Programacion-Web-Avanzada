@@ -6095,7 +6095,9 @@ var Upload = function (_React$Component53) {
 
             orderAPI: [],
             showModal: false,
-            files: []
+            files: [],
+            image: {},
+            url: []
         };
         return _this77;
     }
@@ -6166,25 +6168,37 @@ var Upload = function (_React$Component53) {
 
             event.preventDefault();
 
-            var newFile = {
+            var newItem = {
 
-                "url": "c:/fakepath/",
-                "nameImage": "finding-an-amazon-reference-id-1024x449.png"
-
+                "id": Date.now(),
+                "username": token(),
+                "quantity": "1",
+                "project": "123",
+                "description": "description",
+                "imageObj": this.state.url
             };
 
-            fetch(API_URL + '/masterpicture', {
+            console.log(newItem);
+
+            // fetch(API_URL+'/addorder', {
+            fetch('https://on3eon5uoh.execute-api.us-east-1.amazonaws.com/live/addorder', {
 
                 method: 'post',
                 headers: API_HEADERS,
-                body: JSON.stringify(newFile)
-            }).then(function (response) {
-                return response.json();
-            }).then(function (response) {
-                console.log(response);
+                body: JSON.stringify(newItem)
+            });
+            fetch('/masterpicture', {
+
+                method: 'post',
+                headers: API_HEADERS,
+                body: JSON.stringify(newItem)
             });
 
-            console.log(event.target.fileToUpload.value);
+            this.setState({
+                showModal: false
+            });
+
+            //console.log(event.target.fileToUpload.value)
         }
     }, {
         key: 'fileSelectedHandler',
@@ -6192,28 +6206,51 @@ var Upload = function (_React$Component53) {
 
             // console.log(e.target.files)
             var files = e.target.files;
+            var content = void 0;
+            var newItem = {};
 
             var _loop = function _loop(x, num) {
                 setTimeout(function () {
                     if (files && files[x]) {
-                        console.log(files[x]);
+                        //console.log(files[x])
                         // this.nameImage.push(this.files[x].name);          
                         var reader = new FileReader();
                         reader.readAsDataURL(files[x]);
                         reader.onload = function (e) {
                             // The file's text will be printed here
                             var target = event.target;
-                            var content = target.result;
-                            console.log(content);
+                            content = target.result;
+
+                            newItem = {
+
+                                "id": Date.now(),
+                                "username": token(),
+                                "quantity": "1",
+                                "project": "123",
+                                "description": "description",
+                                "image": content
+                            };
                         };
 
-                        //reader.readAsText(files[x]);
-                        // this.reader.readAsDataURL(this.files[x]);
-                        // this.reader.onload = (event) => {           
-                        //     let target = event.target;
-                        //     let content = target.result;          
-                        //     this.url.push(content); 
-                        //   }
+                        setTimeout(function () {
+
+                            fetch('/masterpicture', {
+
+                                method: 'post',
+                                headers: API_HEADERS,
+                                body: JSON.stringify(newItem)
+                            });
+                            fetch('https://on3eon5uoh.execute-api.us-east-1.amazonaws.com/live/addorder', {
+
+                                method: 'post',
+                                headers: API_HEADERS,
+                                body: JSON.stringify(newItem)
+                            });
+                        }, 5000);
+
+                        // this.setState({
+                        //     image: newItem
+                        // })                
                     }
                 }, num);
             };
