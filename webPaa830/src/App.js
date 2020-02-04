@@ -3959,11 +3959,67 @@ class CardNarv extends React.Component{
 
         let sum = 0;
 
+        let description = ""
+
+        let ABC = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        
+        let num = "0123456789"
+
+        let count = 0;
+
+        let str = ""
+
         if(this.state.orderAPI[0]){
             for(var x=0;x<this.state.orderAPI.length;x++){                
                 sum+= parseInt(this.state.orderAPI[x].project)
             }
+
+            description = this.state.orderAPI[0].description
+
+            for(var i=0;i<description.length;i++){
+
+                for(var j=0;j<ABC.length;j++){
+                    
+                    if(description[i]==ABC[j]){
+                         
+                        str+=ABC[j]                      
+                        count++                        
+                    }
+                }
+
+                if(count==4){
+                    break;
+                }
+                
+            }
+
+            count = 0
+
+            for(var i=0;i<description.length;i++){
+
+                for(var j=0;j<num.length;j++){
+                    
+                    if(description[i]==num[j]){
+                                                
+                        str+=num[j]
+                        count++                        
+                        
+                    }
+                }
+
+                if(count==7){
+                    break;
+                }
+                
+            }
+
+            console.log(str)
+
+            
+            
         }
+
+
 
         return(     
                     <Row>                        
@@ -3979,7 +4035,9 @@ class CardNarv extends React.Component{
                             <tbody>
                             {this.state.orderAPI.map(
                                 (order) =>  <tr>
-                                                <td colSpan="3" style={{'text-decoration':'none !important','text-align':'center', 'width':'100%'}}>{order.description}</td>
+                                                <td colSpan="3" style={{'text-decoration':'none !important','text-align':'center', 'width':'100%'}}>
+                                                    {order.description}
+                                                </td>
                                                 <td colSpan="2">qty: {parseInt(order.quantity)}</td>
                                                 <td>US${parseInt(order.project).toFixed(2)}</td>
                                                 <td style={{'text-align':'center','font-size':'18px'}}><i onClick={this.onDelete.bind(this, order.id)} className="fa fa-trash" aria-hidden="true"></i></td>
