@@ -3959,10 +3959,63 @@ class CardNarv extends React.Component{
 
         let sum = 0;
 
+        let description = ""
+
+        let ABC = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
+        
+        let num = "0123456789"
+
+        let count = 0;
+
+        let str = ""
+
         if(this.state.orderAPI[0]){
             for(var x=0;x<this.state.orderAPI.length;x++){                
                 sum+= parseInt(this.state.orderAPI[x].project)
             }
+
+            description = this.state.orderAPI[0].description
+
+            for(var i=0;i<description.length;i++){
+
+                for(var j=0;j<ABC.length;j++){
+                    
+                    if(description[i]==ABC[j]){
+                         
+                        str+=ABC[j]                      
+                        count++                        
+                    }
+                }
+    
+                if(count==4){
+                    break;
+                }
+                
+            }
+    
+            count = 0
+    
+            for(var i=0;i<description.length;i++){
+    
+                for(var j=0;j<num.length;j++){
+                    
+                    if(description[i]==num[j]){
+                                                
+                        str+=num[j]
+                        count++                        
+                        
+                    }
+                }
+    
+                if(count==7){
+                    break;
+                }
+                
+            }
+    
+            console.log(str)
+
+
         }
 
         return(     
